@@ -21,8 +21,17 @@ const firebaseConfig = {
 export default function App() {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null);
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+
+  const handleEmailChange = (text) => {
+    setEmailValue(text);
+  };
+
+  const handlePasswordChange = (text) => {
+    setPasswordValue(text);
+  };
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -41,14 +50,11 @@ export default function App() {
   const handleLogin = async () => {
     try {
       // Replace with your authentication logic (e.g., email/password login)
-      const emailValue = "juliabgrenier.14.5@gmail.com";
-      const passwordValue = "julia1234";
-
-      //const emailValue = emailRef.current._lastNativeText;
-      //const passwordValue = passwordRef.current._lastNativeText;
+      //const emailValue = "juliabgrenier.14.5@gmail.com";
+      //const passwordValue = "julia1234";
 
       console.log('Input Value:', emailValue);
-      console.log('Input Value:', passwordRef);
+      console.log('Input Value:', passwordValue);
 
       await signInWithEmailAndPassword(auth, emailValue, passwordValue);
     } catch (error) {
@@ -68,16 +74,18 @@ export default function App() {
 
       <View style={styles.container}>
         <TextInput
-            ref={emailRef}
             style={[styles.button, {backgroundColor: '#FAEFF130', color:"#FAEFF1"}]}
             placeholder="Email address"
             placeholderTextColor="#FAEFF1"
+            value={emailValue}
+            onChangeText={handleEmailChange}
         />
         <TextInput
-            ref={passwordRef}
             style={[styles.button, {backgroundColor: '#FAEFF130', color:"#FAEFF1"}]}
             placeholder="Password"
             placeholderTextColor="#FAEFF1"
+            value={passwordValue}
+            onChangeText={handlePasswordChange}
         />
 
         <Pressable style={styles.button} onPress={handleLogin}>
@@ -97,5 +105,6 @@ export default function App() {
       <Text>Welcome, {user.email}!</Text>
       <StatusBar style="auto" />
     </View>
+    // TODO switch page to application
   );
 }
