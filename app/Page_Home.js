@@ -3,19 +3,19 @@ import { Text, Pressable, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native'; 
 
-const CustomButton = ({ title, destination }) => { 
-  const navigation = useNavigation();
+    const CustomButton = ({ title, destination }) => { 
+    const navigation = useNavigation();
 
-  const handlePress = () => {
-    navigation.navigate(destination); 
-  };
+    const handlePress = () => {
+        navigation.navigate(destination); 
+    };
 
-  return (
-    <Pressable onPress={handlePress} style={styles.button}>
-      <Text style={styles.text}>{title}</Text>
-    </Pressable>
-  );
-};
+    return (
+        <Pressable onPress={handlePress} style={styles.button}>
+        <Text style={styles.text}>{title}</Text>
+        </Pressable>
+    );
+    };
 
 const Page_Home = () => {
   return (
