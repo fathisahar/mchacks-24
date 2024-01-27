@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { StyleSheet, Text, View, Pressable, TextInput } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -21,6 +21,8 @@ const firebaseConfig = {
 export default function App() {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -39,10 +41,16 @@ export default function App() {
   const handleLogin = async () => {
     try {
       // Replace with your authentication logic (e.g., email/password login)
-      const email = "juliabgrenier.14.5@gmail.com";
-      const password = "julia1234";
+      const emailValue = "juliabgrenier.14.5@gmail.com";
+      const passwordValue = "julia1234";
 
-      await signInWithEmailAndPassword(auth, email, password);
+      //const emailValue = emailRef.current._lastNativeText;
+      //const passwordValue = passwordRef.current._lastNativeText;
+
+      console.log('Input Value:', emailValue);
+      console.log('Input Value:', passwordRef);
+
+      await signInWithEmailAndPassword(auth, emailValue, passwordValue);
     } catch (error) {
       console.error("Login failed:", error.message);
     }
@@ -60,8 +68,15 @@ export default function App() {
 
       <View style={styles.container}>
         <TextInput
-            style={[styles.button, {backgroundColor: '#FAEFF130'}]}
-            placeholder="email address"
+            ref={emailRef}
+            style={[styles.button, {backgroundColor: '#FAEFF130', color:"#FAEFF1"}]}
+            placeholder="Email address"
+            placeholderTextColor="#FAEFF1"
+        />
+        <TextInput
+            ref={passwordRef}
+            style={[styles.button, {backgroundColor: '#FAEFF130', color:"#FAEFF1"}]}
+            placeholder="Password"
             placeholderTextColor="#FAEFF1"
         />
 
