@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Pressable, TextInput } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+
+import styles from './styles/styles';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCn-fidJWhdmI9ClD3W2RxaS1BCqS3Irqc",
@@ -57,8 +59,18 @@ export default function App() {
       style={styles.linearGradient}>
 
       <View style={styles.container}>
-        <Text>Login Screen</Text>
-        <Button title="Login" onPress={handleLogin} />
+        <TextInput
+            style={[styles.button, {backgroundColor: '#FAEFF130'}]}
+            placeholder="email address"
+            placeholderTextColor="#FAEFF1"
+        />
+
+        <Pressable style={styles.button} onPress={handleLogin}>
+          <Text style={styles.button_text}>LOGIN</Text>
+        </Pressable>
+        <Text style={styles.text}>Don't have an account? Sign Up Now</Text>
+
+        <Text style={[styles.text, { marginTop: 50 }]}>Forgot Password?</Text>
       </View>
 
     </LinearGradient>
@@ -72,18 +84,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  linearGradient: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 20,
-  },
-});
