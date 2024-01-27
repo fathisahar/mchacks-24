@@ -1,4 +1,4 @@
-package com.app
+package com.mchacks2024
 
 import android.os.Build
 import android.os.Bundle
