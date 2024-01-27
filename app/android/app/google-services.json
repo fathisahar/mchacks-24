@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "278107575648",
+    "project_id": "mchacks24-salianmes",
+    "storage_bucket": "mchacks24-salianmes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278107575648:android:1d0123aa7e527f7a6b7a05",
+        "android_client_info": {
+          "package_name": "com.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkNHvp3bnrQGDUfPCMwpt8PKReoAhP7Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
