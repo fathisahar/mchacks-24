@@ -1,11 +1,9 @@
-import { Text, Pressable, View, TextInput } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Text, Pressable, StyleSheet, View, TextInput, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles/styles';
-import { useEffect, useState } from 'react';
 
-const PetsDashboard = () => {
+const Page_PetsDashboard = () => {
     const navigation = useNavigation();
     const [pets, setPets] = useState(false);
     
@@ -108,4 +106,4 @@ const PetsDashboard = () => {
     )
 }
 
-export default PetsDashboard;
+export default Page_PetsDashboard;

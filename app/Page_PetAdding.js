@@ -33,7 +33,6 @@ const [petName, setPetName] = useState('');
   const [pets, setPets] = useState(false);
 
 
-
   const sendPetData = async () => {
     let newID = 0;
     if (pets !== null) {
@@ -82,8 +81,6 @@ const [petName, setPetName] = useState('');
       console.error('Error sending pet data:', error);
     }
   };
-
-
 
   const handlePetNameChange = (text) => {
     setPetName(text);

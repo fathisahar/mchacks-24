@@ -8,6 +8,7 @@ import Page_Swipe from "./Page_Swipe.js"
 import Page_Home from "./Page_Home.js";
 import Page_PetAdding from "./Page_PetAdding.js";
 import Page_ProfilePet from "./Page_ProfilePet.js";
+import Page_PetsDashboard from "./Page_PetsDashboard.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const StackNavigator = () => {
             <Stack.Screen name="SignUp" component={Page_SignUp} />
             <Stack.Screen name="LogIn" component={Page_LogIn} />
             <Stack.Screen name="PetsMatching" component={Page_PetsMatching} />
+            <Stack.Screen name="PetsDashboard" component={Page_PetsDashboard} />
             <Stack.Screen name="Swipe" component={Page_Swipe} />
             <Stack.Screen name="PetAdding" component={Page_PetAdding} />
             <Stack.Screen name="ProfilePet" component={Page_ProfilePet} />
