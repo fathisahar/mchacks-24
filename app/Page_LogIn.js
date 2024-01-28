@@ -55,6 +55,7 @@ const Page_LogIn = () => {
       console.log('Input Value:', emailValue);
       console.log('Input Value:', passwordValue);
       await signInWithEmailAndPassword(auth, emailValue, passwordValue);
+      handlePress("PetsDashboard");
     } catch (error) {
       console.error("Login failed:", error.message);
     }
@@ -101,12 +102,6 @@ const Page_LogIn = () => {
     );
   }
 
-  return (
-    <View style={styles.container}>
-      <Text>Welcome, {user.email}!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
 };
 
 export default Page_LogIn;
