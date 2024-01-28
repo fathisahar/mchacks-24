@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Pressable, StyleSheet, View, TextInput } from 'react-native';
+import { Text, Pressable, StyleSheet, View, TextInput, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import Linear from 'react-native-linear-gradient';
@@ -39,6 +39,23 @@ const PetsDashboard = () => {
                 placeholderTextColor="#FAEFF1"
             />
             <CustomButton title="go home" destination="Home" />
+            <View style={styles.nav_container}>
+                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
+                    <Text style={styles.bottomButtonText}>Button 1</Text>
+                </Pressable>
+                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
+                    <Text style={styles.bottomButtonText}>Button 2</Text>
+                </Pressable>
+                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
+                    <Image
+                    style={styles.icon_img}
+                    source={require('./resources/icons/spark.png')}
+                    />
+                </Pressable>
+                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
+                    <Text style={styles.navButtonText}>Button 4</Text>
+                </Pressable>
+            </View>
         </View>
     )
 

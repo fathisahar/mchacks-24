@@ -178,7 +178,32 @@ const styles = StyleSheet.create({
   },
   action_icons: {
     flexDirection: 'row',
-  }
+  },
+  nav_container: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: '#DA4167',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      padding: 25,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+  },
+  nav_button: {
+      flex: 1,
+      backgroundColor: '#FAEFF1',
+      borderRadius: 10,
+      padding: 0,
+      marginHorizontal: 5,
+  },
+  nav_img: {
+    tintColor: '#FAEFF1',
+    width: 30,
+    height: 30,
+    marginTop: 15
+  },
 
 });
 
