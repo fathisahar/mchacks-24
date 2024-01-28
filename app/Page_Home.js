@@ -26,11 +26,10 @@ const Page_Home = () => {
         colors={['#E29062', '#DA4167']}
         style={styles.linearGradient}>
         <View style={styles.container}>
-        <Text style={{color: '#FAEFF1',
-                         fontSize: 40,
-                         marginBottom: 20}}>Welcome!</Text>
-        <CustomButton title="Log in!" destination="LogIn" />
-        <CustomButton title="Sign Up!" destination="SignUp" />
+        <Text style={{color: '#FAEFF1', fontSize: 40, marginBottom: 10}}>Welcome to Spawk! </Text>
+        <Text style={styles.catchphrase}> Where you will pawsitively find your fur-ever friend!</Text>
+        <CustomButton title="Log in" destination="LogIn" />
+        <CustomButton title="Sign Up" destination="SignUp" />
         <Image
             style={{ width: 150, height: 150, marginBottom:-150, marginTop:80}}
             source={require('./resources/heart_white.png')}

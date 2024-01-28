@@ -125,6 +125,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     opacity: 0.5,
   },
+  catchphrase: {
+    color: '#FAEFF1', 
+    fontSize: 18, 
+    marginBottom: 20,
+    textAlign: 'center', 
+    marginHorizontal: 20,
+},
   toggle_button_dashboard: {
     marginTop: 0,
     marginBottom: 25,
