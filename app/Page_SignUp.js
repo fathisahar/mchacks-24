@@ -7,7 +7,7 @@ import styles from './styles/styles';
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {launchImageLibrary} from 'react-native-image-picker';
-import { getStorage, ref } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 
 const firebaseConfig = {
@@ -27,6 +27,9 @@ const Page_SignUp = () => {
   const auth = getAuth();
   // Create a root reference
   const storage = getStorage();
+  const metadata = {
+    contentType: 'image/jpeg'
+  };
 
   const navigation = useNavigation();
 
@@ -48,9 +51,8 @@ const Page_SignUp = () => {
   const [showAdopter, setShowAdopter] = useState(false);
   const [providers, setProviders] = useState(false);
   const [adopters, setAdopters] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [uploading, setUploading] = useState(false);
-  const [transferred, setTransferred] = useState(0);
+  const [selectedImage, setSelectedImage] = useState('https://i.pinimg.com/736x/07/33/ba/0733ba760b29378474dea0fdbcb97107.jpg');
+  const [profilePic, setProfilePic] = useState('');
 
   const sendData = () => {
     if (showAdopter){
@@ -110,7 +112,7 @@ const Page_SignUp = () => {
 
     const adopterData = {
       id: newID,
-      image: 'url_to_image',
+      image: profilePic,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -132,6 +134,7 @@ const Page_SignUp = () => {
       }
 
       console.log('adopter data sent successfully');
+      setProfilePic('');
       setFirstName('');
       setLastName('');
       setEmail('');
@@ -152,7 +155,7 @@ const Page_SignUp = () => {
 
     const providerData = {
       id: newID,
-      image: 'url_to_image',
+      image: profilePic,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -174,6 +177,7 @@ const Page_SignUp = () => {
       }
 
       console.log('Provider data sent successfully');
+      setProfilePic('');
       setFirstName('');
       setLastName('');
       setEmail('');
@@ -226,12 +230,12 @@ const Page_SignUp = () => {
     }
   };
 
-const uploadImage = async () => {
-  const response = await fetch(selectedImage);
+const uploadImage = async (imageUri) => {
+  const response = await fetch(imageUri);
   const blob = await response.blob();
   const storageRef = ref(storage, "images/" + new Date().getTime());
 
-  const uploadTask = uploadBytesResumable(storageRef, blob);
+  const uploadTask = uploadBytesResumable(storageRef, blob, metadata);
   uploadTask.on('state_changed',
     (snapshot) => {
       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -268,6 +272,7 @@ const uploadImage = async () => {
       // Upload completed successfully, now we can get the download URL
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log('File available at', downloadURL);
+        setProfilePic(downloadURL);
       });
     }
   );
@@ -292,7 +297,10 @@ const uploadImage = async () => {
               setSelectedImage(imageUri);
 
               console.log("Will Upload");
-              uploadImage()
+              if (imageUri != null)
+              {
+                uploadImage(imageUri)
+              }
             }
           });
   };
