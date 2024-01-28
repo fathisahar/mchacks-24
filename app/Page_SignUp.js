@@ -28,11 +28,11 @@ const Page_SignUp = () => {
   const [adopters, setAdopters] = useState(false);
 
   const sendData = () => {
-    if (showProvider){
-      sendProviderData();
-    }
-    if (showAdopter) {
+    if (showAdopter){
       sendAdopterData();
+    } 
+    if (showProvider) {
+      sendProviderData();
     }
   }
 

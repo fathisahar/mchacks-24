@@ -1,77 +1,111 @@
-import React, { useEffect, useState } from 'react';
-import { Text, Pressable, StyleSheet, View, TextInput, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import Linear from 'react-native-linear-gradient';
-import { MultipleSelectList } from 'react-native-dropdown-select-list'
+import React, { useEffect, useState } from "react";
+import {
+  Text,
+  Pressable,
+  StyleSheet,
+  View,
+  TextInput,
+  Image,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import styles from "./styles/styles";
 
-import styles from './styles/styles';
+const Page_PetsDashboard = () => {
+  const navigation = useNavigation();
+  const [pets, setPets] = useState(false);
 
-const PetsDashboard = () => {
-    const [isModalVisible, setModalVisible] = useState(false);
-    const [selected, setSelected] = React.useState([]);
-    const data = [
-          {key:'1', value:'Mobiles', disabled:true},
-          {key:'2', value:'Appliances'},
-          {key:'3', value:'Cameras'},
-          {key:'4', value:'Computers', disabled:true},
-          {key:'5', value:'Vegetables'},
-          {key:'6', value:'Diary Products'},
-          {key:'7', value:'Drinks'},
-  ]
+  const handlePressing = (destination) => {
+    navigation.navigate(destination);
+  };
 
-    const toggleFilter = () => {
-        setModalVisible(!isModalVisible);
+  useEffect(() => {
+    fetchPets();
+  }, []);
+
+  const fetchPets = async () => {
+    try {
+      const response = await fetch(
+        "https://mchacks24-salianmes-default-rtdb.firebaseio.com/pets.json"
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setPets(data);
+      console.log("Fetched data:", data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const CustomButton = ({ title, destination }) => {
+    const handlePress = () => {
+      navigation.navigate(destination);
     };
 
     return (
-        <View style={[styles.pets_dashboard, { backgroundColor: '#FAEFF1' }]}>
-            <Text style={styles.headerText}>Spawk Pets{'\n'}Dashboard</Text>
-            <Pressable style={styles.filters_button} onPress={toggleFilter}>
-                <Text style={styles.filters_text}>Filters</Text>
+      <Pressable onPress={handlePress} style={styles.button}>
+        <Text style={styles.text}>{title}</Text>
+      </Pressable>
+    );
+  };
 
-            </Pressable>
-            <MultipleSelectList
-                    setSelected={(val) => setSelected(val)}
-                    data={data}
-                    save="value"
-                    onSelect={() => alert(selected)}
-                    label="Categories"
-                />
-            <TextInput
-                style={[styles.pet_display, { backgroundColor: '#D9D9D9', color: "#FAEFF1" }]}
-                placeholder="Password"
-                placeholderTextColor="#FAEFF1"
-            />
-            <View style={styles.nav_container}>
-                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
-                    <Image
-                    style={styles.nav_img}
-                    source={require('./resources/icons/profile.png')}
-                    />
-                </Pressable>
-                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
-                    <Image
-                    style={styles.nav_img}
-                    source={require('./resources/icons/search.png')}
-                    />
-                </Pressable>
-                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
-                    <Image
-                    style={styles.nav_img}
-                    source={require('./resources/icons/spark.png')}
-                    />
-                </Pressable>
-                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
-                    <Image
-                    style={styles.nav_img}
-                    source={require('./resources/icons/settings1.png')}
-                    />
-                </Pressable>
-            </View>
-        </View>
-    )
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [selected, setSelected] = useState([]);
 
-}
+  const toggleFilter = () => {
+    setModalVisible(!isModalVisible);
+  };
 
-export default PetsDashboard;
+  return (
+    <View style={[styles.pets_dashboard, { backgroundColor: "#FAEFF1" }]}>
+      <View style={styles.dashboard_header}>
+        <Text style={styles.headerText}>Spawk Pets{"\n"}Dashboard</Text>
+        <Pressable
+          onPress={() => handlePressing("PetAdding")}
+          style={styles.add_pets_button}
+        >
+          <Text style={styles.add_pets_plus}> + </Text>
+        </Pressable>
+      </View>
+      <View style={styles.pet_card_container}>
+        {Object.entries(pets).map(([key, value]) => (
+          <View style={styles.pet_card}>
+            <Text>{value.name}</Text>
+            <Text>{value.description}</Text>
+            <Text>{value.age}</Text>
+            <Text>{value.gender}</Text>
+          </View>
+        ))}
+      </View>
+      <View style={styles.nav_container}>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#DA4167" }]}>
+          <Image
+            style={styles.nav_img}
+            source={require("./resources/icons/profile.png")}
+          />
+        </Pressable>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#DA4167" }]}>
+          <Image
+            style={styles.nav_img}
+            source={require("./resources/icons/search.png")}
+          />
+        </Pressable>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#DA4167" }]}>
+          <Image
+            style={styles.nav_img}
+            source={require("./resources/icons/spark.png")}
+          />
+        </Pressable>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#DA4167" }]}>
+          <Image
+            style={styles.nav_img}
+            source={require("./resources/icons/settings1.png")}
+          />
+        </Pressable>
+      </View>
+    </View>
+  );
+};
+
+export default Page_PetsDashboard;
