@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a19eba3-6faa-4164-ae4f-942fa2f347a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_Messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_Messages.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Page_PetsDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsDashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Page_PetsMatching.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsMatching.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Page_ProfilePet.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_ProfilePet.js" afterDir="false" />
@@ -21,7 +22,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "james"
+    "git-widget-placeholder": "main"
   }
 }]]></component>
   <component name="TaskManager">

@@ -14,6 +14,11 @@ import styles from './styles/styles';
     };
 
     const ProfilePet = () => {
+        const navigation = useNavigation();
+
+        const handlePress = (destination) => {
+            navigation.navigate(destination);
+        };
         return (
           <View style={styles.container_profile}>
         
@@ -84,13 +89,13 @@ import styles from './styles/styles';
                 source={require("./resources/icons/profile.png")}
               />
             </Pressable>
-            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]} onPress={() => handlePress("Swipe")}>
               <Image
                 style={styles.nav_img}
                 source={require("./resources/icons/search.png")}
               />
             </Pressable>
-            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]} onPress={() => handlePress("PetsMatching")}>
               <Image
                 style={styles.nav_img}
                 source={require("./resources/icons/spark.png")}

@@ -85,13 +85,13 @@ const Page_PetsDashboard = () => {
             source={require("./resources/icons/profile.png")}
           />
         </Pressable>
-        <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]} onPress={() => handlePressing("Swipe")}>
           <Image
             style={styles.nav_img}
             source={require("./resources/icons/search.png")}
           />
         </Pressable>
-        <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]} onPress={() => handlePressing("PetsMatching")}>
           <Image
             style={styles.nav_img}
             source={require("./resources/icons/spark.png")}

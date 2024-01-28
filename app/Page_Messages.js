@@ -22,6 +22,11 @@ const CustomButton = ({ title, destination }) => {
 };
 
 const Messages = () => {
+  const navigation = useNavigation();
+
+  const handlePress = (destination) => {
+    navigation.navigate(destination);
+  };
 
     return (
         <View style={[styles.pets_dashboard, { backgroundColor: '#FFB370' }]}>
@@ -66,13 +71,13 @@ const Messages = () => {
                     source={require('./resources/icons/profile.png')}
                     />
                 </Pressable>
-                <Pressable style={[styles.nav_button, { backgroundColor: '#FFB370'}]}>
+                <Pressable style={[styles.nav_button, { backgroundColor: '#FFB370'}]} onPress={() => handlePress("Swipe")}>
                     <Image
                     style={styles.nav_img}
                     source={require('./resources/icons/search.png')}
                     />
                 </Pressable>
-                <Pressable style={[styles.nav_button, { backgroundColor: '#FFB370'}]}>
+                <Pressable style={[styles.nav_button, { backgroundColor: '#FFB370'}]} onPress={() => handlePress("PetsMatching")}>
                     <Image
                     style={styles.nav_img}
                     source={require('./resources/icons/spark.png')}

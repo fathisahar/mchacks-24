@@ -19,6 +19,11 @@ const CustomButton = ({ title, destination }) => {
 };
 
 const Swipe = () => {
+  const navigation = useNavigation();
+
+  const handlePress = (destination) => {
+    navigation.navigate(destination);
+  };
 
     return (
         <View style={styles.container_swipe}>
@@ -50,13 +55,13 @@ const Swipe = () => {
                 source={require("./resources/icons/profile.png")}
               />
             </Pressable>
-            <Pressable style={[styles.nav_button, { backgroundColor: "#89D2DC" }]}>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#89D2DC" }]} onPress={() => handlePress("Swipe")}>
               <Image
                 style={styles.nav_img}
                 source={require("./resources/icons/search.png")}
               />
             </Pressable>
-            <Pressable style={[styles.nav_button, { backgroundColor: "#89D2DC" }]}>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#89D2DC" }]} onPress={() => handlePress("PetsMatching")}>
               <Image
                 style={styles.nav_img}
                 source={require("./resources/icons/spark.png")}
