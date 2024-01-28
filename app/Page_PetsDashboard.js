@@ -7,20 +7,6 @@ import { MultipleSelectList } from 'react-native-dropdown-select-list'
 
 import styles from './styles/styles';
 
-const CustomButton = ({ title, destination }) => {
-    const navigation = useNavigation();
-
-    const handlePress = () => {
-        navigation.navigate(destination);
-    };
-
-    return (
-        <Pressable onPress={handlePress} style={styles.button}>
-        <Text style={styles.text}>{title}</Text>
-        </Pressable>
-    );
-};
-
 const PetsDashboard = () => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [selected, setSelected] = React.useState([]);
@@ -57,7 +43,6 @@ const PetsDashboard = () => {
                 placeholder="Password"
                 placeholderTextColor="#FAEFF1"
             />
-            <CustomButton title="go home" destination="Home" />
             <View style={styles.nav_container}>
                 <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
                     <Image

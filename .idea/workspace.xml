@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95486e1b-76b2-426c-ab80-ab5d62633e8b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Page_Messages.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Page_PetsDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/StackNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/StackNavigator.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/styles/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/styles/styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
