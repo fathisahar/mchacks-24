@@ -21,7 +21,10 @@ const CustomButton = ({ title, destination }) => {
     );
 };
 
-const PetsMatching = () => {
+const PetsMatching =  ({ route }) => {
+
+	const { adopterID } = route.params;
+
     const navigation = useNavigation();
 
     const handlePress = (destination) => {
@@ -65,6 +68,7 @@ const PetsMatching = () => {
 
     return (
         <View style={[styles.pets_dashboard, { backgroundColor: '#FAEFF1' }]}>
+            {console.log(adopterID)}
             <Text style={styles.headerText}>Spawk Pets{'\n'}Matching</Text>
             <SelectList
                     setSelected={(val) => setSelected(val)}
