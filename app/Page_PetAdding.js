@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, Pressable, StyleSheet } from 'react-native';
+import { Text, Pressable, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native'; 
+import styles from './styles/styles';
 
     const CustomButton = ({ title, destination }) => { 
     const navigation = useNavigation();
@@ -19,11 +20,11 @@ import { useNavigation } from '@react-navigation/native';
 
 const Page_PetAdding = () => {
   return (
-    <SafeAreaView>
-      <Text>This is the home page.</Text>
-      <CustomButton title="Log in!" destination="LogIn" />
-      <CustomButton title="Sign Up!" destination="SignUp" />
-    </SafeAreaView>
+    <View>
+        <View style={styles.adding_pets_header_container}>
+        <Text style={styles.adding_pets_header}> Add a pet for adoption</Text>
+        </View>
+    </View>
   );
 };
 

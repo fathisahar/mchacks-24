@@ -23,6 +23,7 @@ const Page_Home2 = () => {
       <Text>This is the home page.</Text>
       <CustomButton title="Log in!" destination="LogIn" />
       <CustomButton title="Sign Up!" destination="SignUp" />
+      <CustomButton title="Pet Adding!" destination="PetAdding" />
     </SafeAreaView>
   );
 };

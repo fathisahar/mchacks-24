@@ -31,6 +31,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     opacity: 0.5,
   },
+  adding_pets_header: {
+    alignSelf: 'center', // Align the text itself to the center
+    textAlign: 'center', // Align the text content to the center
+    marginTop:40,
+    marginBottom:30,
+    fontSize:28,
+  },
+  adding_pets_header_container: {
+    borderBottomWidth: 1, // Adjust the width of the border as needed
+    borderBottomColor: '#000', // Change the color of the border as needed
+  },  
   toggle_button_pressed: {
     backgroundColor: '#FFFFF',
     opacity: 0.9,
