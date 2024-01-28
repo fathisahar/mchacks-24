@@ -1,38 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { Text, Pressable, StyleSheet, View, TextInput } from 'react-native';
+import React from 'react';
+import { Text, Pressable, View, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import Linear from 'react-native-linear-gradient';
-import { MultipleSelectList } from 'react-native-dropdown-select-list'
-
 import styles from './styles/styles';
+import { useEffect, useState } from 'react';
 
-const CustomButton = ({ title, destination }) => {
+const PetsDashboard = () => {
     const navigation = useNavigation();
-
-    const handlePress = () => {
+    const [pets, setPets] = useState(false);
+    
+    const handlePressing = (destination) => {
         navigation.navigate(destination);
     };
 
-    return (
-        <Pressable onPress={handlePress} style={styles.button}>
-        <Text style={styles.text}>{title}</Text>
-        </Pressable>
-    );
-};
+    useEffect(() => {
+        fetchPets();
+      }, []);  
 
-const PetsDashboard = () => {
+    const fetchPets = async () => {
+        try {
+          const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/pets.json');
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+          const data = await response.json();
+          setPets(data);
+          console.log('Fetched data:', data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+
+    const CustomButton = ({ title, destination }) => {
+        const handlePress = () => {
+            navigation.navigate(destination);
+        };
+    
+        return (
+            <Pressable onPress={handlePress} style={styles.button}>
+                <Text style={styles.text}>{title}</Text>
+            </Pressable>
+        );
+    };
+
     const [isModalVisible, setModalVisible] = useState(false);
-    const [selected, setSelected] = React.useState([]);
-    const data = [
-          {key:'1', value:'Mobiles', disabled:true},
-          {key:'2', value:'Appliances'},
-          {key:'3', value:'Cameras'},
-          {key:'4', value:'Computers', disabled:true},
-          {key:'5', value:'Vegetables'},
-          {key:'6', value:'Diary Products'},
-          {key:'7', value:'Drinks'},
-  ]
+    const [selected, setSelected] = useState([]);
 
     const toggleFilter = () => {
         setModalVisible(!isModalVisible);
@@ -40,18 +51,26 @@ const PetsDashboard = () => {
 
     return (
         <View style={[styles.pets_dashboard, { backgroundColor: '#FAEFF1' }]}>
-            <Text style={styles.headerText}>Spawk Pets{'\n'}Dashboard</Text>
-            <Pressable style={styles.filters_button} onPress={toggleFilter}>
-                <Text style={styles.filters_text}>Filters</Text>
+            <View style={styles.dashboard_header}>
+                <Text style={styles.headerText}>Spawk Pets{'\n'}Dashboard</Text>
+                <Pressable onPress={() => handlePressing('PetAdding')} style={styles.add_pets_button}>
+                    <Text style={styles.add_pets_plus}> + </Text>
+                </Pressable>
+            </View>
+            {Object.entries(pets).map(([key, value]) => (
+                <View>
 
-            </Pressable>
-            <MultipleSelectList
-                    setSelected={(val) => setSelected(val)}
-                    data={data}
-                    save="value"
-                    onSelect={() => alert(selected)}
-                    label="Categories"
+                <Text>{value.name}</Text>
+                <TextInput
+                style={[styles.pet_display, { backgroundColor: '#D9D9D9', color: "#FAEFF1" }]}
+                placeholder="Password"
+                placeholderTextColor="#FAEFF1"
+                key={key}
+                value={value.name}
                 />
+                </View>
+            ))}
+
             <TextInput
                 style={[styles.pet_display, { backgroundColor: '#D9D9D9', color: "#FAEFF1" }]}
                 placeholder="Password"
@@ -60,7 +79,6 @@ const PetsDashboard = () => {
             <CustomButton title="go home" destination="Home" />
         </View>
     )
-
 }
 
 export default PetsDashboard;

@@ -37,19 +37,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     opacity: 0.5,
   },
-  adding_pets_header: {
-    alignSelf: 'center', // Align the text itself to the center
-    textAlign: 'center', // Align the text content to the center
-    marginTop:40,
-    marginBottom:30,
-    fontSize:28,
+  adding_pets_size_container: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
   },
-  adding_pets_header_container: {
-    borderBottomWidth: 1, // Adjust the width of the border as needed
-    borderBottomColor: '#000', // Change the color of the border as needed
-  },  
+  dashboard_header: {
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+  },
+  add_pets_button: {
+    backgroundColor: '#FFB370',
+    borderRadius:50,
+    marginRight:30,
+    marginBottom:20,
+    width:50,
+    height: 50,
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+  add_pets_plus: {
+    fontSize:36,
+    marginBottom:10,
+  },
+  adding_pets_header: {
+    alignSelf: 'center', 
+    textAlign: 'center',
+    marginTop:10,
+    marginBottom:15,
+    fontSize:28,
+    color:'#FFFF',
+  }, 
   toggle_button_pressed: {
-    backgroundColor: '#FFFFF',
+    backgroundColor: '#FAEFF1',
     opacity: 0.9,
   },  
   button_text: {
@@ -68,19 +89,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    width: 150,
-    height: 150,
-    resizeMode: 'cover', // Adjust the image's content mode as needed
+    width: 250,
+    height: 250,
+    resizeMode: 'cover',
     borderRadius: 100,
     marginBottom:20,
+    marginBottom: 5,
+  },
+  icon_adding_pets: {
+    width: 150,
+    height: 150,
+    resizeMode: 'cover',
+    borderRadius: 100,
+    marginBottom:20,
+    marginBottom: 5,
   },
   icon_view: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
-    elevation: 5, // Elevation for Android
-    borderRadius: 100, // Apply border radius to container
+    borderRadius: 100,
     overflow: 'hidden',
   },
   input: {
@@ -89,8 +114,8 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: '#FAEFF1',
     textTransform: 'none',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
     paddingLeft: 20,
     width: '70%',
     alignItems: 'center',

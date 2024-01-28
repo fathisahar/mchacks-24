@@ -27,15 +27,56 @@ const Page_SignUp = () => {
   const [providers, setProviders] = useState(false);
   const [adopters, setAdopters] = useState(false);
 
-  const sendData = () => {
-    if (showProvider){
-      sendProviderData();
+  const sendPetData = async () => {
+    let newID = 0;
+    if (pets !== null) {
+      newID = Object.keys(pets).length + 1;
     }
-    if (showAdopter) {
-      sendAdopterData();
-    }
-  }
 
+    const petData = {
+      id: newID,
+      image: 'url_to_image',
+      name: petName,
+      description: petDescription,
+      location: petLocation,
+      animalType: petAnimalType,
+      gender: petGender,
+      size: petSize,
+      age: petAge,
+      quirks: petQuirks
+    };
+  
+    try {
+      const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/pets.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(petData)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to send pet data');
+      }
+  
+      console.log('Pet data sent successfully');
+  
+      setPetName('');
+      setPetDescription('');
+      setPetLocation('');
+      setPetAnimalType('');
+      setPetGender('');
+      setPetSize('');
+      setPetAge('');
+      setPetQuirks('');
+  
+
+      navigation.navigate("PetAdding");
+    } catch (error) {
+      console.error('Error sending pet data:', error);
+    }
+  };
+  
   const fetchProviders = async () => {
     try {
       const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/providers.json');
