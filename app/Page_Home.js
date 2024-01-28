@@ -1,7 +1,9 @@
 import React from 'react';
-import { Text, Pressable, StyleSheet } from 'react-native';
+import { Text, Pressable, StyleSheet, Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native'; 
+import LinearGradient from 'react-native-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import styles from './styles/styles';
 
     const CustomButton = ({ title, destination }) => { 
     const navigation = useNavigation();
@@ -12,38 +14,30 @@ import { useNavigation } from '@react-navigation/native';
 
     return (
         <Pressable onPress={handlePress} style={styles.button}>
-        <Text style={styles.text}>{title}</Text>
+        <Text style={styles.button_text}>{title}</Text>
         </Pressable>
     );
     };
 
-const Page_Home2 = () => {
+const Page_Home = () => {
   return (
-    <SafeAreaView>
-      <Text>This is the home page.</Text>
-      <CustomButton title="Log in!" destination="LogIn" />
-      <CustomButton title="Sign Up!" destination="SignUp" />
-      <CustomButton title="Home" destination="Home" />
-    </SafeAreaView>
+
+      <LinearGradient
+        colors={['#E29062', '#DA4167']}
+        style={styles.linearGradient}>
+        <View style={styles.container}>
+        <Text style={{color: '#FAEFF1',
+                         fontSize: 40,
+                         marginBottom: 20}}>Welcome!</Text>
+        <CustomButton title="Log in!" destination="LogIn" />
+        <CustomButton title="Sign Up!" destination="SignUp" />
+        <Image
+            style={{ width: 150, height: 150, marginBottom:-150, marginTop:80}}
+            source={require('./resources/heart_white.png')}
+          />
+        </View>
+      </LinearGradient>
   );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 10,
-    marginBottom: 10,
-    borderRadius: 50,
-    backgroundColor: 'black',
-    paddingHorizontal: 32, 
-    paddingVertical: 10,
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-});
-
-export default Page_Home2;
+export default Page_Home;
