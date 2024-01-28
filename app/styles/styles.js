@@ -33,12 +33,13 @@ const styles = StyleSheet.create({
     textTransform: 'none',
     paddingHorizontal: 15,
     paddingVertical: 15,
-    width: '30%',
+    width: '32%',
     alignItems: 'center',
+    opacity: 0.5,
   },
   toggle_button_pressed: {
-    borderColor: '#00000',
-    borderWidth: 2, // Adjust the value to make the border thicker
+    backgroundColor: '#FFFFF',
+    opacity: 0.9,
   },  
   button_text: {
     color: '#DA4167',
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     height: 150,
     resizeMode: 'cover', // Adjust the image's content mode as needed
     borderRadius: 100,
+    marginBottom:20,
   },
   icon_view: {
     shadowColor: '#000',
@@ -71,8 +73,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   input: {
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 5,
     borderRadius: 30,
     backgroundColor: '#FAEFF1',
     textTransform: 'none',

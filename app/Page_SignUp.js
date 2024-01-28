@@ -12,23 +12,107 @@ const Page_SignUp = () => {
     navigation.navigate(destination);
   };
 
-  const [firstNameProvider, setFirstNameProvider] = useState('');
-  const [lastNameProvider, setLastNameProvider] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [location, setLocation] = useState('');
   const [showProvider, setShowProvider] = useState(true);
-  const [showAdoptee, setShowAdoptee] = useState(false);
+  const [showAdopter, setShowAdopter] = useState(false);
 
-  const handleFirstNameProviderChange = (text) => {
-    setFirstNameProvider(text);
+  const sendData = () => {
+    if (showProvider){
+      sendProviderData();
+    }
+
+    if (showAdopter) {
+      sendAdopterData();
+    }
+
+  }
+  const sendAdopterData = async () => {
+    const adopterData = {
+      image: 'url_to_image',
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      location: 'New York'
+    };
+
+
+    try {
+      const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/adopters.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(adopterData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send adopter data');
+      }
+
+      console.log('adopter data sent successfully');
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setLocation('');
+    } catch (error) {
+      console.error('Error sending adopter data:', error);
+    }
   };
 
-  const handleLastNameProviderChange = (text) => {
-    setLastNameProvider(text);
+  const sendProviderData = async () => {
+    const providerData = {
+      image: 'url_to_image',
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      location: 'New York'
+    };
+
+    try {
+      const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/providers.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(providerData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send provider data');
+      }
+
+      console.log('Provider data sent successfully');
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setLocation('');
+    } catch (error) {
+      console.error('Error sending provider data:', error);
+    }
+  };
+  
+  const handleFirstNameChange = (text) => {
+    setFirstName(text);
+  };
+
+  const handleLastNameChange = (text) => {
+    setLastName(text);
   };
 
   const handleEmailChange = (text) => {
     setEmail(text);
+  };
+
+  const handleLocationChange = (text) => {
+    setLocation(text);
   };
 
   const handlePasswordChange = (text) => {
@@ -37,22 +121,22 @@ const Page_SignUp = () => {
 
   const handlePressProvider = () => {
     if (showProvider){
-      if (showAdoptee){
+      if (showAdopter){
         setShowProvider(false);
       }
     } else {
       setShowProvider(true);
-      setShowAdoptee(false);
+      setShowAdopter(false);
     }
   };
 
-  const handlePressAdoptee = () => {
-    if (showAdoptee){
+  const handlePressAdopter = () => {
+    if (showAdopter){
       if (showProvider){
-        setShowAdoptee(false);
+        setShowAdopter(false);
       }
     } else {
-      setShowAdoptee(true);
+      setShowAdopter(true);
       setShowProvider(false);
     }
   };
@@ -62,6 +146,12 @@ const Page_SignUp = () => {
       colors={['#E29062', '#DA4167']}
       style={styles.linearGradient}>
       <View style={styles.container}>
+        <View style="icon_view">
+          <Image
+          source={{ uri: 'https://i.redd.it/5ointhi9p8031.jpg' }}
+          style={styles.icon}
+        />
+        </View>
         <View style={styles.toggle}>
         <Pressable
           style={({ pressed }) => [
@@ -75,34 +165,28 @@ const Page_SignUp = () => {
           <Pressable
           style={({ pressed }) => [
             styles.toggle_button,
-            showAdoptee && styles.toggle_button_pressed, 
+            showAdopter && styles.toggle_button_pressed, 
           ]}
-          onPress={handlePressAdoptee}
+          onPress={handlePressAdopter}
         >
-          <Text>Adoptee</Text>
+          <Text>Adopter</Text>
         </Pressable>
         </View>
         {showProvider && (
           <>
-        <View style="icon_view">
-          <Image
-          source={{ uri: 'https://i.redd.it/5ointhi9p8031.jpg' }}
-          style={styles.icon}
-        />
-        </View>
         <TextInput
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
           placeholder="First Name of Provider"
           placeholderTextColor="#FAEFF1"
-          value={firstNameProvider}
-          onChangeText={handleFirstNameProviderChange}
+          value={firstName}
+          onChangeText={handleFirstNameChange}
         />
         <TextInput
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
           placeholder="Last Name of Provider"
           placeholderTextColor="#FAEFF1"
-          value={lastNameProvider}
-          onChangeText={handleLastNameProviderChange}
+          value={lastName}
+          onChangeText={handleLastNameChange}
         />
         <TextInput
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
@@ -118,29 +202,30 @@ const Page_SignUp = () => {
           value={password}
           onChangeText={handlePasswordChange}
         />
+         <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Location"
+          placeholderTextColor="#FAEFF1"
+          value={location}
+          onChangeText={handleLocationChange}
+        />
         </>
         )}
-        {showAdoptee && (
+        {showAdopter && (
         <>
-        <View style="icon_view">
-          <Image
-          source={{ uri: 'https://i.redd.it/5ointhi9p8031.jpg' }}
-          style={styles.icon}
-        />
-        </View>
         <TextInput
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
           placeholder="First Name of Adopter"
           placeholderTextColor="#FAEFF1"
-          value={firstNameProvider}
-          onChangeText={handleFirstNameProviderChange}
+          value={firstName}
+          onChangeText={handleFirstNameChange}
         />
         <TextInput
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
           placeholder="Last Name of Adopter"
           placeholderTextColor="#FAEFF1"
-          value={lastNameProvider}
-          onChangeText={handleLastNameProviderChange}
+          value={lastName}
+          onChangeText={handleLastNameChange}
         />
         <TextInput
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
@@ -156,16 +241,22 @@ const Page_SignUp = () => {
           value={password}
           onChangeText={handlePasswordChange}
         />
-        
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Location"
+          placeholderTextColor="#FAEFF1"
+          value={location}
+          onChangeText={handleLocationChange}
+        />
+
         </>
         )}
-        <Pressable onPress={() => handlePress("SignUp")} style={styles.button}>
+        <Pressable onPress={sendAdopterData} style={styles.button}>
           <Text>SIGN UP</Text>
         </Pressable>
         <Pressable onPress={() => handlePress("LogIn")}>
           <Text style={styles.text}>Have a provider account? Log in now</Text>
         </Pressable>
-        <CustomButton title="CANCEL" destination="Home"/>
       </View>
     </LinearGradient>
   );
