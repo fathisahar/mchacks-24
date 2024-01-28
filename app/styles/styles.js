@@ -103,10 +103,20 @@ const styles = StyleSheet.create({
   icon: {
     width: 80,
     height: 80,
+    borderRadius: 50,
     backgroundColor: '#FAEFF1',
-    paddingHorizontal: 5,
-    paddingVertical: 5,
     alignItems: 'center',
+    marginTop: 15,
+    marginLeft: 15,
+    marginRight: 15
+  },
+  icon_img: {
+    width: 50,
+    height: 50,
+    marginTop: 15
+  },
+  action_icons: {
+    flexDirection: 'row',
   }
 
 });
