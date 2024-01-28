@@ -9,6 +9,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  container_swipe: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#89D2DC'
+  },
   text: {
     color: '#FAEFF1',
     fontSize: 12,
@@ -93,6 +99,98 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAEFF130',
     color: 'white',
   },
+  pets_dashboard: {
+      flex: 1,
+      padding: 20,
+      // Add other container styles if needed
+  },
+  headerText: {
+      color: '#5D1D29',
+      fontSize: 30,
+      fontWeight: 'bold',
+      marginTop: 10, // Adjust the margin as needed
+      marginLeft: 10, // Adjust the margin as needed
+      marginBottom: 20,
+  },
+  filters_text: {
+    color: '#FAEFF1',
+    fontSize: 16,
+  },
+  filters_button: {
+      marginTop: 0,
+      marginLeft: 10,
+      marginBottom: 20,
+      borderRadius: 40,
+      backgroundColor: '#DA4167',
+      textTransform: 'none',
+      paddingHorizontal: 20,
+      paddingVertical: 20,
+      width: '30%',
+      alignItems: 'center',
+  },
+  filters_container: {
+      flex: 1,
+      marginTop: 50,
+      marginLeft: 10,
+      width: '47%',
+      height: '30%',
+  },
+  filter_item: {
+      marginTop: 0,
+      marginLeft: 10,
+      color: '#FAEFF1',
+      fontSize: 16,
+  },
+  pet_text: {
+      color: '#FAEFF1',
+      fontSize: 16,
+  },
+  pet_display: {
+      marginTop: 0,
+      marginLeft: 10,
+      marginBottom: 10,
+      borderRadius: 20,
+      backgroundColor: '#DA4167',
+      textTransform: 'none',
+      paddingHorizontal: 20,
+      paddingVertical: 20,
+      width: '47%',
+      height: '30%',
+      alignItems: 'center',
+  },
+  text_white_header: {
+    color: '#FAEFF1',
+    fontSize: 40,
+    alignSelf: 'flex-start', // Align this text to the start (left) along the main axis
+    textAlign: 'left', // Align the text content to the left within its container
+    marginLeft: 40,
+    marginBottom: 20
+  },
+
+  swipe_photo: {
+    width: '90%',
+    height: '50%',
+    borderRadius: 30,
+  },
+  icon: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    backgroundColor: '#FAEFF1',
+    alignItems: 'center',
+    marginTop: 20,
+    marginLeft: 50,
+    marginRight: 50
+  },
+  icon_img: {
+    width: 50,
+    height: 50,
+    marginTop: 15
+  },
+  action_icons: {
+    flexDirection: 'row',
+  }
+
 });
 
 export default styles;
