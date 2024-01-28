@@ -120,7 +120,7 @@ const Page_SignUp = () => {
       lastName: lastName,
       email: email,
       password: password,
-      location: 'New York'
+      location: location
     };
 
     try {
@@ -166,7 +166,7 @@ const Page_SignUp = () => {
       lastName: lastName,
       email: email,
       password: password,
-      location: 'New York'
+      location: location
     };
 
     try {
