@@ -6,6 +6,7 @@ import Page_SignUp from "./Page_SignUp.js";
 import Page_LogIn from "./Page_LogIn.js";
 import Page_Swipe from "./Page_Swipe.js";
 import Page_Home from "./Page_Home.js";
+import Page_Idle from "./Page_Idle.js";
 import Page_PetAdding from "./Page_PetAdding.js";
 import Page_Messages from "./Page_Messages.js";
 import Page_ProfilePet from "./Page_ProfilePet.js";

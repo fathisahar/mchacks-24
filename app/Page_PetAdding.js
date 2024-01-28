@@ -20,7 +20,10 @@ const CustomButton = ({ title, destination }) => {
   );
 };
 
-const Page_PetAdding = () => {
+const Page_PetAdding = ({ route }) => {
+
+	const { providerID } = route.params;
+
 const navigation = useNavigation();
 const [petName, setPetName] = useState('');
   const [description, setDescription] = useState('');
@@ -41,6 +44,7 @@ const [petName, setPetName] = useState('');
 
     const petData = {
       id: newID,
+	  providerID: providerID,
       image: 'url_to_image',
       name: petName,
       description: description,

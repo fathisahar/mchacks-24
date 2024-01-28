@@ -15,6 +15,7 @@ const Page_SignUp = () => {
   useEffect(() => {
     setShowProvider(true);
     fetchProviders();
+    fetchAdopters();
   }, []);  
 
   const [firstName, setFirstName] = useState('');
@@ -65,6 +66,8 @@ const Page_SignUp = () => {
   };
 
   const sendAdopterData = async () => {
+    let newID; 
+
     if (adopters !== null) {
       newID = Object.keys(adopters).length + 1;
     } else {
@@ -100,13 +103,16 @@ const Page_SignUp = () => {
       setEmail('');
       setPassword('');
       setLocation('');
-      navigation.navigate("PetAdding"); 
+      navigation.navigate("PetsMatching", { adopterID: newID } ); 
+      
     } catch (error) {
       console.error('Error sending adopter data:', error);
     }
   };
 
   const sendProviderData = async () => {
+    let newID; 
+
     if (providers !== null) {
       newID = Object.keys(providers).length + 1;
     } else {
@@ -135,13 +141,13 @@ const Page_SignUp = () => {
       if (!response.ok) {
         throw new Error('Failed to send provider data');
       }
-
       console.log('Provider data sent successfully');
       setFirstName('');
       setLastName('');
       setEmail('');
       setPassword('');
       setLocation('');
+      navigation.navigate("PetAdding",  { providerID: newID } ); 
     } catch (error) {
       console.error('Error sending provider data:', error);
     }
