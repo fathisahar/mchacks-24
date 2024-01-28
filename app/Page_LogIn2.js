@@ -1,14 +1,17 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet} from 'react-native';
 import { useNavigation } from '@react-navigation/native'; 
 
-    const CustomButton = ({ title, destination }) => { 
-    const navigation = useNavigation();
 
+const Page_LogIn2 = () => {
+
+const CustomButton = ({ title, destination }) => { 
+    const navigation = useNavigation();
+    
     const handlePress = () => {
         navigation.navigate(destination); 
     };
-
+    
     return (
         <Pressable onPress={handlePress} style={styles.button}>
         <Text style={styles.text}>{title}</Text>
@@ -16,15 +19,14 @@ import { useNavigation } from '@react-navigation/native';
     );
     };
 
-const Page_Home = () => {
   return (
     <View>
-      <Text>This is the home page.</Text>
-      <CustomButton title="Log in!" destination="LogIn" />
-      <CustomButton title="Sign Up!" destination="SignUp" />
+        <Text>This is the login page.</Text>
+        <CustomButton title="Cancel" destination="Home"/>
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   button: {
@@ -44,4 +46,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Page_Home;
+
+export default Page_LogIn2;

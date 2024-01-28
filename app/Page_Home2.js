@@ -1,28 +1,29 @@
 import React from 'react';
-import { Text, Pressable, StyleSheet, View } from 'react-native';
+import { Text, Pressable, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native'; 
 
-const Page_SignUp = () => {
-
-  const CustomButton = ({ title, destination }) => { 
+    const CustomButton = ({ title, destination }) => { 
     const navigation = useNavigation();
-  
-    const handlePress = () => {
-      navigation.navigate(destination); 
-    };
-  
-    return (
-      <Pressable onPress={handlePress} style={styles.button}>
-        <Text style={styles.text}>{title}</Text>
-      </Pressable>
-    );
-  };
 
+    const handlePress = () => {
+        navigation.navigate(destination); 
+    };
+
+    return (
+        <Pressable onPress={handlePress} style={styles.button}>
+        <Text style={styles.text}>{title}</Text>
+        </Pressable>
+    );
+    };
+
+const Page_Home2 = () => {
   return (
-    <View>
-        <Text>This is the sign up page.</Text>
-        <CustomButton title="Cancel" destination="Home"/>
-    </View>
+    <SafeAreaView>
+      <Text>This is the home page.</Text>
+      <CustomButton title="Log in!" destination="LogIn" />
+      <CustomButton title="Sign Up!" destination="SignUp" />
+    </SafeAreaView>
   );
 };
 
@@ -44,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Page_SignUp;
+export default Page_Home2;
