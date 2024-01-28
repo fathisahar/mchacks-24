@@ -26,8 +26,8 @@ const Page_Home = () => {
         colors={['#E29062', '#DA4167']}
         style={styles.linearGradient}>
         <View style={styles.container}>
-        <Text style={{color: '#FAEFF1', fontSize: 40, marginBottom: 10}}>Welcome to Spawk! </Text>
-        <Text style={styles.catchphrase}> Where you will pawsitively find your fur-ever friend!</Text>
+        <Text style={{color: '#FAEFF1', fontSize: 40, marginBottom: 10}}>Welcome to Spawk </Text>
+        <Text style={styles.catchphrase}> where you will pawsitively find your fur-ever friend!</Text>
         <CustomButton title="Log in" destination="LogIn" />
         <CustomButton title="Sign Up" destination="SignUp" />
         <Image

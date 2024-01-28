@@ -21,8 +21,8 @@ const CustomButton = ({ title, destination }) => {
 };
 
 const Page_PetAdding = ({ route }) => {
-
-	const { providerID } = route.params;
+    const { userID } = route.params;
+    console.log(userID)
 
 const navigation = useNavigation();
 const [petName, setPetName] = useState('');
@@ -44,7 +44,7 @@ const [petName, setPetName] = useState('');
 
     const petData = {
       id: newID,
-	  providerID: providerID,
+	  providerID: userID,
       image: 'url_to_image',
       name: petName,
       description: description,
@@ -80,7 +80,7 @@ const [petName, setPetName] = useState('');
       setAge('');
       setQuirks('');
 
-      navigation.navigate("PetsDashboard");
+	  navigation.navigate("PetsDashboard", {userID: userID}); 
     } catch (error) {
       console.error('Error sending pet data:', error);
     }

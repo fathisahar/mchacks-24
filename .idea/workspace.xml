@@ -7,12 +7,19 @@
     <list default="true" id="4a19eba3-6faa-4164-ae4f-942fa2f347a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Page_Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/styles/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/styles/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_PetAdding.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetAdding.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_PetsDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_PetsMatching.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsMatching.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_SignUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/StackNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/StackNavigator.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {

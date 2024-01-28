@@ -103,7 +103,8 @@ const Page_SignUp = () => {
       setEmail('');
       setPassword('');
       setLocation('');
-      navigation.navigate("PetsMatching", { adopterID: newID } ); 
+      fetchAdopters();
+      navigation.navigate("PetsMatching"); 
       
     } catch (error) {
       console.error('Error sending adopter data:', error);
@@ -147,7 +148,8 @@ const Page_SignUp = () => {
       setEmail('');
       setPassword('');
       setLocation('');
-      navigation.navigate("PetAdding",  { providerID: newID } ); 
+      navigation.navigate("PetsDashboard", {userID: newID}); 
+      fetchProviders();
     } catch (error) {
       console.error('Error sending provider data:', error);
     }

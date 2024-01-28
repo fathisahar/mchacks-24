@@ -10,7 +10,11 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles/styles";
 
-const Page_PetsDashboard = () => {
+const Page_PetsDashboard = ({ route }) => {
+
+    const { userID } = route.params;
+    console.log(userID)
+
     const navigation = useNavigation();
 
     const handleCardPress = (pet) => {
@@ -23,7 +27,12 @@ const Page_PetsDashboard = () => {
     const [showAdopters, setShowAdopters] = useState(false);
 
     const handlePressing = (destination) => {
-        navigation.navigate(destination);
+        if (destination === 'PetAdding' || destination === 'PetsDashboard'){
+            navigation.navigate(destination, {userID: userID});
+            fetchPets();
+        } else {
+            navigation.navigate(destination);
+        }
     };
 
   useEffect(() => {
@@ -50,6 +59,7 @@ const Page_PetsDashboard = () => {
         if (showPets){
             setShowAdopters(true);
             setShowPets(false);
+            fetchPets();
         } else {
             setShowAdopters(false);
             setShowPets(true);
@@ -79,7 +89,7 @@ const Page_PetsDashboard = () => {
                     </Pressable>
                 )}
                 {showAdopters &&(
-                    <Pressable onPress={() => handlePressing('PetAdding')} style={styles.add_pets_button}>
+                    <Pressable onPress={() => handlePressing('Messages')} style={styles.add_pets_button}>
                         <Image
                             style={styles.nav_img}
                             source={require('./resources/icons/messages.png')}
@@ -105,7 +115,7 @@ const Page_PetsDashboard = () => {
                     )}
                     </Pressable>
                     </View>
-            {showPets && (
+            {showPets && pets && Object.values(pets).length > 0 && (
                 <View style={styles.pet_card_container}>
                 {Object.values(pets).map((pet, index) => (
                     <View style={styles.pet_card}>

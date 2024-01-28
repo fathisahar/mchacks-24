@@ -5,10 +5,12 @@ import { StatusBar } from 'expo-status-bar';
 import Linear from 'react-native-linear-gradient';
 import { SelectList } from 'react-native-dropdown-select-list'
 
+
 import styles from './styles/styles';
 
 const CustomButton = ({ title, destination }) => {
     const navigation = useNavigation();
+    
 
     const handlePress = () => {
         navigation.navigate(destination);
@@ -21,9 +23,7 @@ const CustomButton = ({ title, destination }) => {
     );
 };
 
-const PetsMatching =  ({ route }) => {
-
-	const { adopterID } = route.params;
+const PetsMatching =  () => {
 
     const navigation = useNavigation();
 
@@ -62,13 +62,11 @@ const PetsMatching =  ({ route }) => {
               { key: '3', value: 'Birds', disabled: false },
               { key: '4', value: 'No Filters', disabled: false }
             ]);
-            //console.log(data);
         }
     };
 
     return (
         <View style={[styles.pets_dashboard, { backgroundColor: '#FAEFF1' }]}>
-            {console.log(adopterID)}
             <Text style={styles.headerText}>Spawk Pets{'\n'}Matching</Text>
             <SelectList
                     setSelected={(val) => setSelected(val)}
