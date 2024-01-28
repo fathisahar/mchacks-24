@@ -36,12 +36,6 @@ const Swipe = () => {
                         source={require('./resources/icons/spark.png')}
                       />
                 </Pressable>
-                <Pressable style={[styles.icon, { backgroundColor: '#F78764'}]}>
-                    <Image
-                        style={styles.icon_img}
-                        source={require('./resources/icons/time.png')}
-                      />
-                </Pressable>
                 <Pressable style={[styles.icon, { backgroundColor: '#DA4167'}]}>
                     <Image
                         style={styles.icon_img}
