@@ -4,6 +4,21 @@ import { Text, Pressable, TextInput, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient'; 
 import styles from './styles/styles';
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {launchImageLibrary} from 'react-native-image-picker';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCn-fidJWhdmI9ClD3W2RxaS1BCqS3Irqc",
+  authDomain: "mchacks24-salianmes.firebaseapp.com",
+  projectId: "mchacks24-salianmes",
+  storageBucket: "mchacks24-salianmes.appspot.com",
+  messagingSenderId: "278107575648",
+  appId: "1:278107575648:web:7971f2649fb066ca6b7a05",
+  measurementId: "G-CW8WYVDBT1"
+};
 
 const Page_SignUp = () => {
   const navigation = useNavigation();
@@ -193,6 +208,63 @@ const Page_SignUp = () => {
       setShowAdopter(true);
       setShowProvider(false);
     }
+  };
+
+const uploadImage = async () => {
+  const response = await fetch(uri);
+  const blob = await response.blob();
+  const storageRef = ref(storage, "images/");
+
+  const uploadTask = uploadBytesResumable(storageRef, blob);
+  uploadTask.on('state_changed',
+    (snapshot) => {
+      // Observe state change events such as progress, pause, and resume
+      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('Upload is ' + progress + '% done');
+      switch (snapshot.state) {
+        case 'paused':
+          console.log('Upload is paused');
+          break;
+        case 'running':
+          console.log('Upload is running');
+          break;
+      }
+    },
+    (error) => {
+      // Handle unsuccessful uploads
+    },
+    () => {
+      // Handle successful uploads on complete
+      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log('File available at', downloadURL);
+      });
+    }
+  );
+
+}
+
+
+SelectImage = () => {
+      const options = {
+            mediaType: 'photo',
+            includeBase64: false,
+            maxHeight: 2000,
+            maxWidth: 2000,
+          };
+
+          launchImageLibrary(options, (response) => {
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('Image picker error: ', response.error);
+            } else {
+              let imageUri = response.uri || response.assets?.[0]?.uri;
+              setSelectedImage(imageUri);
+              uploadImage(imageUri, "image");
+            }
+          });
   };
 
   return (
