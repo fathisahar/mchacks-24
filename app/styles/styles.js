@@ -9,6 +9,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  container_swipe: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#89D2DC'
+  },
   text: {
     color: '#FAEFF1',
     fontSize: 12,
@@ -32,6 +38,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAEFF130',
     color: 'white',
   },
+  text_white_header: {
+    color: '#FAEFF1',
+    fontSize: 40,
+    alignSelf: 'flex-start', // Align this text to the start (left) along the main axis
+    textAlign: 'left', // Align the text content to the left within its container
+    marginLeft: 40,
+    marginBottom: 20
+  },
+
+  swipe_photo: {
+    width: '90%',
+    height: '60%',
+    borderRadius: 30,
+  },
+  icon: {
+    width: 80,
+    height: 80,
+    backgroundColor: '#FAEFF1',
+    paddingHorizontal: 5,
+    paddingVertical: 5,
+    alignItems: 'center',
+  }
+
 });
 
 export default styles;
