@@ -235,34 +235,28 @@ const styles = StyleSheet.create({
       marginLeft: 10, // Adjust the margin as needed
       marginBottom: 20,
   },
-  filters_text: {
-    color: '#FAEFF1',
-    fontSize: 16,
-  },
   filters_button: {
       marginTop: 0,
-      marginLeft: 10,
-      marginBottom: 20,
       borderRadius: 40,
       backgroundColor: '#DA4167',
-      textTransform: 'none',
-      paddingHorizontal: 20,
-      paddingVertical: 20,
-      width: '30%',
-      alignItems: 'center',
+      borderWidth: 0,
+      padding: 0,
+      marginBottom: 0,
+      width: 150
+  },
+  filters_selected: {
+    borderRadius: 40,
+    backgroundColor: '#EB99AD',
+    padding: 10,
+    marginRight: 10
   },
   filters_container: {
-      flex: 1,
-      marginTop: 50,
-      marginLeft: 10,
-      width: '47%',
-      height: '30%',
+    flexDirection: 'row',
+    margin: 10
   },
-  filter_item: {
-      marginTop: 0,
-      marginLeft: 10,
-      color: '#FAEFF1',
-      fontSize: 16,
+  filters_dropdown: {
+      width: 150,
+      margin: 0
   },
   pet_text: {
       color: '#FAEFF1',
