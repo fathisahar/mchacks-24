@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, Pressable, StyleSheet, View, TextInput } from 'react-native';
+import { Text, Pressable, StyleSheet, View, TextInput, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import Linear from 'react-native-linear-gradient';
@@ -86,6 +86,32 @@ const PetsMatching = () => {
                 placeholderTextColor="#FAEFF1"
             />
             <CustomButton title="go home" destination="Home" />
+          <View style={[styles.nav_container, { backgroundColor: "#FAEFF1" }]}>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/profile.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/search.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/spark.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/settings1.png")}
+              />
+            </Pressable>
+          </View>
         </View>
     )
 

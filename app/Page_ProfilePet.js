@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Pressable, StyleSheet, View } from 'react-native';
+import { Text, Pressable, StyleSheet, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles/styles';
@@ -77,6 +77,32 @@ import styles from './styles/styles';
                 </View>
 
             </View>
+          <View style={[styles.nav_container, { backgroundColor: "#FAEFF1" }]}>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/profile.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/search.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/spark.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/settings1.png")}
+              />
+            </Pressable>
+          </View>
 
           </View>
 

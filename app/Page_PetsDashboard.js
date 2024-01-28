@@ -78,26 +78,26 @@ const Page_PetsDashboard = () => {
           </View>
         ))}
       </View>
-      <View style={styles.nav_container}>
-        <Pressable style={[styles.nav_button, { backgroundColor: "#DA4167" }]}>
+      <View style={[styles.nav_container, { backgroundColor: "#FAEFF1" }]}>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
           <Image
             style={styles.nav_img}
             source={require("./resources/icons/profile.png")}
           />
         </Pressable>
-        <Pressable style={[styles.nav_button, { backgroundColor: "#DA4167" }]}>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
           <Image
             style={styles.nav_img}
             source={require("./resources/icons/search.png")}
           />
         </Pressable>
-        <Pressable style={[styles.nav_button, { backgroundColor: "#DA4167" }]}>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
           <Image
             style={styles.nav_img}
             source={require("./resources/icons/spark.png")}
           />
         </Pressable>
-        <Pressable style={[styles.nav_button, { backgroundColor: "#DA4167" }]}>
+        <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
           <Image
             style={styles.nav_img}
             source={require("./resources/icons/settings1.png")}
