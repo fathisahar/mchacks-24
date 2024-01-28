@@ -7,6 +7,9 @@ const Page_PetsDashboard = () => {
     const navigation = useNavigation();
     const [pets, setPets] = useState(false);
     
+    const [showPets, setShowPets] = useState(true);
+    const [showAdopters, setShowAdopters] = useState(false);
+
     const handlePressing = (destination) => {
         navigation.navigate(destination);
     };
@@ -41,6 +44,17 @@ const Page_PetsDashboard = () => {
         );
     };
 
+    const handlePressToggle = () => {
+        if (showPets){
+            setShowAdopters(true);
+            setShowPets(false);
+        } else {
+            setShowAdopters(false);
+            setShowPets(true);
+        }
+      };
+    
+
     const [isModalVisible, setModalVisible] = useState(false);
     const [selected, setSelected] = useState([]);
 
@@ -51,21 +65,56 @@ const Page_PetsDashboard = () => {
     return (
         <View style={[styles.pets_dashboard, { backgroundColor: '#FAEFF1' }]}>
             <View style={styles.dashboard_header}>
-                <Text style={styles.headerText}>Spawk Pets{'\n'}Dashboard</Text>
-                <Pressable onPress={() => handlePressing('PetAdding')} style={styles.add_pets_button}>
-                    <Text style={styles.add_pets_plus}> + </Text>
-                </Pressable>
+                {showPets && (
+                    <Text style={styles.headerText}>Spawk Pets{'\n'}Dashboard</Text>
+                )}
+                {showAdopters && (
+                    <Text style={styles.headerText}>Spawk Adopters{'\n'}Dashboard</Text>
+                )}
+                {showPets &&(
+                    <Pressable onPress={() => handlePressing('PetAdding')} style={styles.add_pets_button}>
+                        <Text style={styles.add_pets_plus}> + </Text>
+                    </Pressable>
+                )}
+                {showAdopters &&(
+                    <Pressable onPress={() => handlePressing('PetAdding')} style={styles.add_pets_button}>
+                        <Image
+                            style={styles.nav_img}
+                            source={require('./resources/icons/messages.png')}
+                        />
+                    </Pressable>
+                    
+                )}
+                
             </View>
-            <View style={styles.pet_card_container}>
-            {Object.entries(pets).map(([key, value]) => (
-                <View style={styles.pet_card}>
-                <Text>{value.name}</Text>
-                <Text>{value.description}</Text>
-                <Text>{value.age}</Text>
-                <Text>{value.gender}</Text>
+            <View style={styles.toggle_dashboard}>
+            <Pressable
+                    style={({ pressed }) => [
+                        styles.toggle_button_dashboard,
+                        showPets && styles.toggle_button_pressed_dashboard, 
+                    ]}
+                    onPress={handlePressToggle}
+                    >
+                    {showAdopters && (
+                    <Text >View pets on adoption</Text>
+                    )}
+                    {showPets && (
+                    <Text >View interested adopters</Text>
+                    )}
+                    </Pressable>
+                    </View>
+            {showPets && (
+                <View style={styles.pet_card_container}>
+                {Object.entries(pets).map(([key, value]) => (
+                    <View style={styles.pet_card}>
+                    <Text>{value.name}</Text>
+                    <Text>{value.description}</Text>
+                    <Text>{value.age}</Text>
+                    <Text>{value.gender}</Text>
+                    </View>
+                ))}
                 </View>
-            ))}
-            </View>
+            )}
             <View style={styles.nav_container}>
                 <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
                     <Image

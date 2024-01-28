@@ -108,6 +108,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     alignItems: 'center', 
   },
+  toggle_dashboard:{
+    flexDirection: 'row', 
+    alignItems: 'center', 
+  },
   toggle_button: {
     marginTop: 10,
     marginBottom: 10,
@@ -118,6 +122,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 15,
     width: '32%',
+    alignItems: 'center',
+    opacity: 0.5,
+  },
+  toggle_button_dashboard: {
+    marginTop: 0,
+    marginBottom: 25,
+    marginRight:10,
+    borderRadius: 30,
+    backgroundColor: '#CB5A76',
+    textTransform: 'none',
+    paddingHorizontal: 15,
+    paddingVertical: 15,
+    width: '55%',
     alignItems: 'center',
     opacity: 0.5,
   },
@@ -173,6 +190,10 @@ const styles = StyleSheet.create({
   }, 
   toggle_button_pressed: {
     backgroundColor: '#FAEFF1',
+    opacity: 0.9,
+  },  
+  toggle_button_pressed_dashboard: {
+    backgroundColor: '#CB5A76',
     opacity: 0.9,
   },  
 
