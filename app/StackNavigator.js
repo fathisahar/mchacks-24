@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Page_PetsDashboard from "./Page_PetsDashboard.js";
 import Page_SignUp from './Page_SignUp.js';
 import Page_LogIn from "./Page_LogIn.js";
-import Page_Home from "./Page_Home2.js";
+import Page_Home from "./Page_Home.js";
 
 const Stack = createNativeStackNavigator();
 

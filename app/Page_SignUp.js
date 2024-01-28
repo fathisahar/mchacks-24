@@ -1,47 +1,279 @@
 import React from 'react';
-import { Text, Pressable, StyleSheet, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; 
+import { useEffect, useState } from 'react';
+import { Text, Pressable, TextInput, View, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient'; 
+import styles from './styles/styles';
 
 const Page_SignUp = () => {
+  const navigation = useNavigation();
 
-  const CustomButton = ({ title, destination }) => { 
-    const navigation = useNavigation();
-  
-    const handlePress = () => {
-      navigation.navigate(destination); 
+  const handlePress = (destination) => { 
+    navigation.navigate(destination);
+  };
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [location, setLocation] = useState('');
+  const [showProvider, setShowProvider] = useState(true);
+  const [showAdopter, setShowAdopter] = useState(false);
+
+  const sendData = () => {
+    if (showProvider){
+      sendProviderData();
+    }
+
+    if (showAdopter) {
+      sendAdopterData();
+    }
+
+  }
+  const sendAdopterData = async () => {
+    const adopterData = {
+      image: 'url_to_image',
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      location: 'New York'
     };
+
+
+    try {
+      const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/adopters.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(adopterData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send adopter data');
+      }
+
+      console.log('adopter data sent successfully');
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setLocation('');
+    } catch (error) {
+      console.error('Error sending adopter data:', error);
+    }
+  };
+
+  const sendProviderData = async () => {
+    const providerData = {
+      image: 'url_to_image',
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      location: 'New York'
+    };
+
+    try {
+      const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/providers.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(providerData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send provider data');
+      }
+
+      console.log('Provider data sent successfully');
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setLocation('');
+    } catch (error) {
+      console.error('Error sending provider data:', error);
+    }
+  };
   
-    return (
-      <Pressable onPress={handlePress} style={styles.button}>
-        <Text style={styles.text}>{title}</Text>
-      </Pressable>
-    );
+  const handleFirstNameChange = (text) => {
+    setFirstName(text);
+  };
+
+  const handleLastNameChange = (text) => {
+    setLastName(text);
+  };
+
+  const handleEmailChange = (text) => {
+    setEmail(text);
+  };
+
+  const handleLocationChange = (text) => {
+    setLocation(text);
+  };
+
+  const handlePasswordChange = (text) => {
+    setPassword(text);
+  };
+
+  const handlePressProvider = () => {
+    if (showProvider){
+      if (showAdopter){
+        setShowProvider(false);
+      }
+    } else {
+      setShowProvider(true);
+      setShowAdopter(false);
+    }
+  };
+
+  const handlePressAdopter = () => {
+    if (showAdopter){
+      if (showProvider){
+        setShowAdopter(false);
+      }
+    } else {
+      setShowAdopter(true);
+      setShowProvider(false);
+    }
   };
 
   return (
-    <View>
-        <Text>This is the sign up page.</Text>
-        <CustomButton title="Cancel" destination="Home"/>
-    </View>
+    <LinearGradient 
+      colors={['#E29062', '#DA4167']}
+      style={styles.linearGradient}>
+      <View style={styles.container}>
+        <View style="icon_view">
+          <Image
+          source={{ uri: 'https://i.redd.it/5ointhi9p8031.jpg' }}
+          style={styles.icon}
+        />
+        </View>
+        <View style={styles.toggle}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.toggle_button,
+            showProvider && styles.toggle_button_pressed, 
+          ]}
+          onPress={handlePressProvider}
+        >
+          <Text>Provider</Text>
+        </Pressable>
+          <Pressable
+          style={({ pressed }) => [
+            styles.toggle_button,
+            showAdopter && styles.toggle_button_pressed, 
+          ]}
+          onPress={handlePressAdopter}
+        >
+          <Text>Adopter</Text>
+        </Pressable>
+        </View>
+        {showProvider && (
+          <>
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="First Name of Provider"
+          placeholderTextColor="#FAEFF1"
+          value={firstName}
+          onChangeText={handleFirstNameChange}
+        />
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Last Name of Provider"
+          placeholderTextColor="#FAEFF1"
+          value={lastName}
+          onChangeText={handleLastNameChange}
+        />
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Email"
+          placeholderTextColor="#FAEFF1"
+          value={email}
+          onChangeText={handleEmailChange}
+        />
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Password"
+          placeholderTextColor="#FAEFF1"
+          value={password}
+          onChangeText={handlePasswordChange}
+        />
+         <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Location"
+          placeholderTextColor="#FAEFF1"
+          value={location}
+          onChangeText={handleLocationChange}
+        />
+        </>
+        )}
+        {showAdopter && (
+        <>
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="First Name of Adopter"
+          placeholderTextColor="#FAEFF1"
+          value={firstName}
+          onChangeText={handleFirstNameChange}
+        />
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Last Name of Adopter"
+          placeholderTextColor="#FAEFF1"
+          value={lastName}
+          onChangeText={handleLastNameChange}
+        />
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Email"
+          placeholderTextColor="#FAEFF1"
+          value={email}
+          onChangeText={handleEmailChange}
+        />
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Password"
+          placeholderTextColor="#FAEFF1"
+          value={password}
+          onChangeText={handlePasswordChange}
+        />
+        <TextInput
+          style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+          placeholder="Location"
+          placeholderTextColor="#FAEFF1"
+          value={location}
+          onChangeText={handleLocationChange}
+        />
+
+        </>
+        )}
+        <Pressable onPress={sendAdopterData} style={styles.button}>
+          <Text>SIGN UP</Text>
+        </Pressable>
+        <Pressable onPress={() => handlePress("LogIn")}>
+          <Text style={styles.text}>Have a provider account? Log in now</Text>
+        </Pressable>
+      </View>
+    </LinearGradient>
   );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    marginTop: 10,
-    marginBottom: 10,
-    borderRadius: 50,
-    backgroundColor: 'black',
-    paddingHorizontal: 32, 
-    paddingVertical: 10,
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: 'white',
-  },
-});
+const CustomButton = ({ title, destination }) => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate(destination);
+  };
+
+  return (
+    <Pressable onPress={handlePress} style={styles.button}>
+      <Text>{title}</Text>
+    </Pressable>
+  );
+};
 
 export default Page_SignUp;
