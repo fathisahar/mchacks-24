@@ -13,6 +13,7 @@ const Page_SignUp = () => {
   };
 
   useEffect(() => {
+    setShowProvider(true);
     fetchProviders();
   }, []);  
 
@@ -21,7 +22,7 @@ const Page_SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [location, setLocation] = useState('');
-  const [showProvider, setShowProvider] = useState(true);
+  const [showProvider, setShowProvider] = useState(false);
   const [showAdopter, setShowAdopter] = useState(false);
   const [providers, setProviders] = useState(false);
   const [adopters, setAdopters] = useState(false);
