@@ -21,7 +21,10 @@ const CustomButton = ({ title, destination }) => {
     );
 };
 
-const PetsMatching = () => {
+const PetsMatching =  ({ route }) => {
+
+	const { adopterID } = route.params;
+
     const [elements, setElements] = useState([]);
     const [selected, setSelected] = React.useState([]);
     const [data, setData] = useState([
@@ -60,6 +63,7 @@ const PetsMatching = () => {
 
     return (
         <View style={[styles.pets_dashboard, { backgroundColor: '#FAEFF1' }]}>
+            {console.log(adopterID)}
             <Text style={styles.headerText}>Spawk Pets{'\n'}Matching</Text>
             <SelectList
                     setSelected={(val) => setSelected(val)}
