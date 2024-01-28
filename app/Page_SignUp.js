@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Text, Pressable, TextInput, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient'; 
+import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles/styles';
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -21,9 +21,16 @@ const firebaseConfig = {
 };
 
 const Page_SignUp = () => {
+  // Check if Firebase app is not already initialized
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth();
+  // Create a root reference
+  const storage = getStorage();
+
   const navigation = useNavigation();
 
-  const handlePress = (destination) => { 
+  const handlePress = (destination) => {
     navigation.navigate(destination);
   };
 
@@ -42,14 +49,31 @@ const Page_SignUp = () => {
   const [showAdopter, setShowAdopter] = useState(false);
   const [providers, setProviders] = useState(false);
   const [adopters, setAdopters] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [transferred, setTransferred] = useState(0);
 
   const sendData = () => {
     if (showAdopter){
       sendAdopterData();
-    } 
+    }
     if (showProvider) {
       sendProviderData();
     }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        const uid = user.uid;
+        console.log(uid);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
   }
 
   const fetchProviders = async () => {
@@ -87,7 +111,7 @@ const Page_SignUp = () => {
       newID = Object.keys(adopters).length + 1;
     } else {
       newID = 0;
-    }    
+    }
 
     const adopterData = {
       id: newID,
@@ -132,7 +156,7 @@ const Page_SignUp = () => {
       newID = Object.keys(providers).length + 1;
     } else {
       newID = 0;
-    }    
+    }
 
     const providerData = {
       id: newID,
@@ -167,7 +191,7 @@ const Page_SignUp = () => {
       console.error('Error sending provider data:', error);
     }
   };
-  
+
   const handleFirstNameChange = (text) => {
     setFirstName(text);
   };
@@ -268,21 +292,23 @@ SelectImage = () => {
   };
 
   return (
-    <LinearGradient 
+    <LinearGradient
       colors={['#E29062', '#DA4167']}
       style={styles.linearGradient}>
       <View style={styles.container}>
         <View style="icon_view">
+        <Pressable onPress={SelectImage}>
           <Image
-          source={{ uri: 'https://i.redd.it/5ointhi9p8031.jpg' }}
-          style={styles.icon}
-        />
+            source={{ uri: selectedImage }}
+            style={styles.icon}
+          />
+        </Pressable>
         </View>
         <View style={styles.toggle}>
         <Pressable
           style={({ pressed }) => [
             styles.toggle_button,
-            showProvider && styles.toggle_button_pressed, 
+            showProvider && styles.toggle_button_pressed,
           ]}
           onPress={handlePressProvider}
         >
@@ -291,7 +317,7 @@ SelectImage = () => {
           <Pressable
           style={({ pressed }) => [
             styles.toggle_button,
-            showAdopter && styles.toggle_button_pressed, 
+            showAdopter && styles.toggle_button_pressed,
           ]}
           onPress={handlePressAdopter}
         >
