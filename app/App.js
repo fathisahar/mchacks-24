@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import StackNavigator from './StackNavigator.js';
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
@@ -60,6 +62,9 @@ export default function App() {
         <Text>Login Screen</Text>
         <Button title="Login" onPress={handleLogin} />
       </View>
+      <NavigationContainer>
+      <StackNavigator/>
+      </NavigationContainer>
 
     </LinearGradient>
     );
@@ -70,6 +75,7 @@ export default function App() {
       <Text>Welcome, {user.email}!</Text>
       <StatusBar style="auto" />
     </View>
+    
   );
 }
 
