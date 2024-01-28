@@ -1,7 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Text, Pressable, StyleSheet, View, TextInput, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import styles from './styles/styles';
+import React, { useEffect, useState } from "react";
+import {
+  Text,
+  Pressable,
+  StyleSheet,
+  View,
+  TextInput,
+  Image,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import styles from "./styles/styles";
 
 const Page_PetsDashboard = () => {
     const navigation = useNavigation();
@@ -19,35 +26,25 @@ const Page_PetsDashboard = () => {
         navigation.navigate(destination);
     };
 
-    useEffect(() => {
-        fetchPets();
-      }, []);  
+  useEffect(() => {
+    fetchPets();
+  }, []);
 
-    const fetchPets = async () => {
-        try {
-          const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/pets.json');
-          if (!response.ok) {
-            throw new Error('Failed to fetch data');
-          }
-          const data = await response.json();
-          setPets(data);
-          console.log('Fetched data:', data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-
-    const CustomButton = ({ title, destination }) => {
-        const handlePress = () => {
-            navigation.navigate(destination);
-        };
-    
-        return (
-            <Pressable onPress={handlePress} style={styles.button}>
-                <Text style={styles.text}>{title}</Text>
-            </Pressable>
-        );
-    };
+  const fetchPets = async () => {
+    try {
+      const response = await fetch(
+        "https://mchacks24-salianmes-default-rtdb.firebaseio.com/pets.json"
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setPets(data);
+      console.log("Fetched data:", data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
     const handlePressToggle = () => {
         if (showPets){

@@ -11,17 +11,25 @@
       <change beforePath="$PROJECT_DIR$/app/Page_PetsMatching.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsMatching.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Page_SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_SignUp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/StackNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/StackNavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_Messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_Messages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_PetsDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_PetsMatching.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsMatching.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_ProfilePet.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_ProfilePet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Page_Swipe.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_Swipe.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;git-widget-placeholder&quot;: &quot;sahar3&quot;
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "main"
   }
-}</component>
+}]]></component>
   <component name="TaskManager">
     <servers />
   </component>

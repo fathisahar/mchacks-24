@@ -406,6 +406,59 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
   },
+  msg_container: {
+    height: 90,
+    marginTop: 30,
+      flexDirection: 'row',
+  },
+  msg_pfp: {
+    width: 80,
+    height: 80,
+      marginTop: 5,
+      marginLeft: 10,
+      backgroundColor: '#DA4167',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      borderRadius: 100,
+  },
+  msg_button: {
+      color: '#5D1D29',
+      width: 180,
+      height: 80,
+      marginLeft: 0,
+  },
+  msg_preview: {
+      width: 250,
+      height: 80,
+      alignItems: 'center',
+      backgroundColor: '#FFB370',
+      marginTop: 5,
+      marginLeft: 20,
+      flexDirection: 'row',
+  },
+  msg_name: {
+      color: '#5D1D29',
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginTop: 0, // Adjust the margin as neede
+      marginLeft: 0, // Adjust the margin as needed
+      marginBottom: 5,
+  },
+  msg_time: {
+      width: 250,
+      height: 80,
+      justifyContent: 'center',
+      backgroundColor: '#DA4167',
+      marginTop: 5,
+      marginLeft: 20,
+  },
+  txt_time: {
+      color: '#707070',
+      marginRight: 0,
+      right: 0,
+  },
+
+
 
 });
 

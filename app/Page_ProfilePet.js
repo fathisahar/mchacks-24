@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Pressable, StyleSheet, View } from 'react-native';
+import { Text, Pressable, StyleSheet, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles/styles';
@@ -18,7 +18,11 @@ import styles from './styles/styles';
 
       const { name, location, description, animalType, age, gender, size, quirks } = pet;
     
-    
+        const navigation = useNavigation();
+
+        const handlePress = (destination) => {
+            navigation.navigate(destination);
+        };
         return (
           <View style={styles.container_profile}>
             <View style={styles.backgroundBox_profile}></View>
@@ -52,6 +56,32 @@ import styles from './styles/styles';
                       <Text style={styles.text_header5}>{quirks}</Text>
                   </View>
             </View>
+          <View style={[styles.nav_container, { backgroundColor: "#FAEFF1" }]}>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/profile.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]} onPress={() => handlePress("Swipe")}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/search.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]} onPress={() => handlePress("PetsMatching")}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/spark.png")}
+              />
+            </Pressable>
+            <Pressable style={[styles.nav_button, { backgroundColor: "#FAEFF1" }]}>
+              <Image
+                style={styles.nav_img}
+                source={require("./resources/icons/settings1.png")}
+              />
+            </Pressable>
+          </View>
 
           </View>
 
