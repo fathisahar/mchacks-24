@@ -13,69 +13,44 @@ import styles from './styles/styles';
 
     };
 
-    const ProfilePet = () => {
+    const ProfilePet = ({ route }) => {
+      const { pet } = route.params;
+
+      const { name, location, description, animalType, age, gender, size, quirks } = pet;
+    
+    
         return (
           <View style={styles.container_profile}>
-        
-            <CustomButton title="go home" destination="Home" />
-
             <View style={styles.backgroundBox_profile}></View>
-
             <View style={styles.foregroundBox_profile}></View>
-
             <View style={styles.container2_profile}>
-
               <View style={styles.circle_profile}></View>
-
-              <Text style={styles.text_header1}>Kiko Rapin</Text>
-              <Text style={styles.text_header2}>Montréal, CA</Text>
-              
+              <Text style={styles.text_header1}>{name}</Text>
+              <Text style={styles.text_header2}>{location}</Text>
             </View>
-
             <View style={styles.container3_profile}>
-
               <Text style={styles.text_header3}>Description</Text>
-              <Text style={styles.text_header4}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
-              
+              <Text style={styles.text_header4}>{description}</Text>
             </View>
-
             <View style={styles.container4_profile}>
               <View style={styles.column}>
                 <Text style={styles.text_header3}>Breed</Text>
-                <Text style={styles.text_header4}>meow</Text>
-
+                <Text style={styles.text_header4}>{animalType}</Text>
                 <Text style={styles.text_header3}>Gender</Text>
-                <Text style={styles.text_header4}>M</Text>
-
+                <Text style={styles.text_header4}>{gender}</Text>
               </View>
               <View style={styles.column}>
                 <Text style={styles.text_header3}>Age</Text>
-                <Text style={styles.text_header4}>2 yo</Text>
-
+                <Text style={styles.text_header4}>{age}</Text>
                 <Text style={styles.text_header3}>Size</Text>
-                <Text style={styles.text_header4}>Large</Text>
-
+                <Text style={styles.text_header4}>{size}</Text>
               </View>
-
             </View>
-
             <View style={styles.container5_profile}>
-
                 <Text style={styles.text_header3}>Quirks</Text>
-
-                <View style={styles.container6_profile}>
-
-                  <Text style={styles.text_header5}>Loves cuddling</Text>
-                 
-                </View>
-
-                <View style={styles.container6_profile}>
-
-                  <Text style={styles.text_header5}>Hairy</Text>
-
-                </View>
-
+                  <View style={styles.container6_profile}>
+                      <Text style={styles.text_header5}>{quirks}</Text>
+                  </View>
             </View>
 
           </View>

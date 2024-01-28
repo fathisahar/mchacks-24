@@ -5,6 +5,11 @@ import styles from './styles/styles';
 
 const Page_PetsDashboard = () => {
     const navigation = useNavigation();
+
+    const handleCardPress = (pet) => {
+        navigation.navigate('ProfilePet', { pet });
+    };
+;
     const [pets, setPets] = useState(false);
     
     const [showPets, setShowPets] = useState(true);
@@ -105,12 +110,11 @@ const Page_PetsDashboard = () => {
                     </View>
             {showPets && (
                 <View style={styles.pet_card_container}>
-                {Object.entries(pets).map(([key, value]) => (
+                {Object.values(pets).map((pet, index) => (
                     <View style={styles.pet_card}>
-                    <Text>{value.name}</Text>
-                    <Text>{value.description}</Text>
-                    <Text>{value.age}</Text>
-                    <Text>{value.gender}</Text>
+                    <Pressable key={index} onPress={() => handleCardPress(pet)}>
+                        <Text>Name: {pet.name}</Text>
+                    </Pressable>
                     </View>
                 ))}
                 </View>
