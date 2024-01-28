@@ -67,7 +67,7 @@ const Page_SignUp = () => {
     if (adopters !== null) {
       newID = Object.keys(adopters).length + 1;
     } else {
-      newID = 1;
+      newID = 0;
     }    
 
     const adopterData = {
@@ -99,7 +99,7 @@ const Page_SignUp = () => {
       setEmail('');
       setPassword('');
       setLocation('');
-      fetchAdopters();
+      navigation.navigate("PetAdding"); 
     } catch (error) {
       console.error('Error sending adopter data:', error);
     }
@@ -109,7 +109,7 @@ const Page_SignUp = () => {
     if (providers !== null) {
       newID = Object.keys(providers).length + 1;
     } else {
-      newID = 1;
+      newID = 0;
     }    
 
     const providerData = {
@@ -141,7 +141,6 @@ const Page_SignUp = () => {
       setEmail('');
       setPassword('');
       setLocation('');
-      fetchProviders();
     } catch (error) {
       console.error('Error sending provider data:', error);
     }
