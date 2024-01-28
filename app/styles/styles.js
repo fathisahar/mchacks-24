@@ -121,8 +121,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     opacity: 0.5,
   },
+  pet_card: {
+    width:'40%',
+    height: '30%',
+    backgroundColor: '#D9D9D9', 
+    color: "#FAEFF1",
+    borderRadius:20,
+    alignItems:'center',
+    justifyContent:'center',
+    marginBottom:20,
+    borderColor: '#ccc',
+    borderWidth: 1,
+  },
+  pet_card_container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
   adding_pets_size_container: {
-    flexDirection: 'row', 
+   flexDirection: 'row', 
     justifyContent: 'space-between', 
     alignItems: 'center', 
   },
@@ -131,6 +148,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     alignItems: 'center', 
   },
+
   add_pets_button: {
     backgroundColor: '#FFB370',
     borderRadius:50,

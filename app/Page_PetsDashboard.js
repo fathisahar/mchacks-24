@@ -56,26 +56,16 @@ const Page_PetsDashboard = () => {
                     <Text style={styles.add_pets_plus}> + </Text>
                 </Pressable>
             </View>
+            <View style={styles.pet_card_container}>
             {Object.entries(pets).map(([key, value]) => (
-                <View>
-
+                <View style={styles.pet_card}>
                 <Text>{value.name}</Text>
-                <TextInput
-                style={[styles.pet_display, { backgroundColor: '#D9D9D9', color: "#FAEFF1" }]}
-                placeholder="Password"
-                placeholderTextColor="#FAEFF1"
-                key={key}
-                value={value.name}
-                />
+                <Text>{value.description}</Text>
+                <Text>{value.age}</Text>
+                <Text>{value.gender}</Text>
                 </View>
             ))}
-
-            <TextInput
-                style={[styles.pet_display, { backgroundColor: '#D9D9D9', color: "#FAEFF1" }]}
-                placeholder="Password"
-                placeholderTextColor="#FAEFF1"
-            />
-            <CustomButton title="go home" destination="Home" />
+            </View>
             <View style={styles.nav_container}>
                 <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
                     <Image
