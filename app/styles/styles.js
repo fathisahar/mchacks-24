@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
 
   swipe_photo: {
     width: '90%',
-    height: '60%',
+    height: '50%',
     borderRadius: 30,
   },
   icon: {
@@ -167,9 +167,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: '#FAEFF1',
     alignItems: 'center',
-    marginTop: 15,
-    marginLeft: 15,
-    marginRight: 15
+    marginTop: 20,
+    marginLeft: 50,
+    marginRight: 50
   },
   icon_img: {
     width: 50,
