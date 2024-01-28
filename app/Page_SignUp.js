@@ -2,13 +2,35 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Text, Pressable, TextInput, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient'; 
+import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles/styles';
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {launchImageLibrary} from 'react-native-image-picker';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCn-fidJWhdmI9ClD3W2RxaS1BCqS3Irqc",
+  authDomain: "mchacks24-salianmes.firebaseapp.com",
+  projectId: "mchacks24-salianmes",
+  storageBucket: "mchacks24-salianmes.appspot.com",
+  messagingSenderId: "278107575648",
+  appId: "1:278107575648:web:7971f2649fb066ca6b7a05",
+  measurementId: "G-CW8WYVDBT1"
+};
 
 const Page_SignUp = () => {
+  // Check if Firebase app is not already initialized
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth();
+  // Create a root reference
+  const storage = getStorage();
+
   const navigation = useNavigation();
 
-  const handlePress = (destination) => { 
+  const handlePress = (destination) => {
     navigation.navigate(destination);
   };
 
@@ -27,14 +49,31 @@ const Page_SignUp = () => {
   const [showAdopter, setShowAdopter] = useState(false);
   const [providers, setProviders] = useState(false);
   const [adopters, setAdopters] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [transferred, setTransferred] = useState(0);
 
   const sendData = () => {
     if (showAdopter){
       sendAdopterData();
-    } 
+    }
     if (showProvider) {
       sendProviderData();
     }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        const uid = user.uid;
+        console.log(uid);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
   }
 
   const fetchProviders = async () => {
@@ -72,7 +111,7 @@ const Page_SignUp = () => {
       newID = Object.keys(adopters).length + 1;
     } else {
       newID = 0;
-    }    
+    }
 
     const adopterData = {
       id: newID,
@@ -118,7 +157,7 @@ const Page_SignUp = () => {
       newID = Object.keys(providers).length + 1;
     } else {
       newID = 0;
-    }    
+    }
 
     const providerData = {
       id: newID,
@@ -154,7 +193,7 @@ const Page_SignUp = () => {
       console.error('Error sending provider data:', error);
     }
   };
-  
+
   const handleFirstNameChange = (text) => {
     setFirstName(text);
   };
@@ -197,22 +236,81 @@ const Page_SignUp = () => {
     }
   };
 
+const uploadImage = async () => {
+  const response = await fetch(uri);
+  const blob = await response.blob();
+  const storageRef = ref(storage, "images/");
+
+  const uploadTask = uploadBytesResumable(storageRef, blob);
+  uploadTask.on('state_changed',
+    (snapshot) => {
+      // Observe state change events such as progress, pause, and resume
+      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('Upload is ' + progress + '% done');
+      switch (snapshot.state) {
+        case 'paused':
+          console.log('Upload is paused');
+          break;
+        case 'running':
+          console.log('Upload is running');
+          break;
+      }
+    },
+    (error) => {
+      // Handle unsuccessful uploads
+    },
+    () => {
+      // Handle successful uploads on complete
+      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log('File available at', downloadURL);
+      });
+    }
+  );
+
+}
+
+
+SelectImage = () => {
+      const options = {
+            mediaType: 'photo',
+            includeBase64: false,
+            maxHeight: 2000,
+            maxWidth: 2000,
+          };
+
+          launchImageLibrary(options, (response) => {
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('Image picker error: ', response.error);
+            } else {
+              let imageUri = response.uri || response.assets?.[0]?.uri;
+              setSelectedImage(imageUri);
+              uploadImage(imageUri, "image");
+            }
+          });
+  };
+
   return (
-    <LinearGradient 
+    <LinearGradient
       colors={['#E29062', '#DA4167']}
       style={styles.linearGradient}>
       <View style={styles.container}>
         <View style="icon_view">
+        <Pressable onPress={SelectImage}>
           <Image
-          source={{ uri: 'https://i.redd.it/5ointhi9p8031.jpg' }}
-          style={styles.icon}
-        />
+            source={{ uri: selectedImage }}
+            style={styles.icon}
+          />
+        </Pressable>
         </View>
         <View style={styles.toggle}>
         <Pressable
           style={({ pressed }) => [
             styles.toggle_button,
-            showProvider && styles.toggle_button_pressed, 
+            showProvider && styles.toggle_button_pressed,
           ]}
           onPress={handlePressProvider}
         >
@@ -221,7 +319,7 @@ const Page_SignUp = () => {
           <Pressable
           style={({ pressed }) => [
             styles.toggle_button,
-            showAdopter && styles.toggle_button_pressed, 
+            showAdopter && styles.toggle_button_pressed,
           ]}
           onPress={handlePressAdopter}
         >
