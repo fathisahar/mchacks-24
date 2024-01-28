@@ -25,6 +25,7 @@ const Page_Home2 = () => {
       <CustomButton title="Sign Up!" destination="SignUp" />
       <CustomButton title="Pets Dashboard" destination="PetsDashboard" />
       <CustomButton title="Swipe" destination="Swipe" />
+      <CustomButton title="Profile Pet" destination="ProfilePet" />
     </SafeAreaView>
   );
 };
