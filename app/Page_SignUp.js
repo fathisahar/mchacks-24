@@ -27,6 +27,9 @@ const Page_SignUp = () => {
   const auth = getAuth();
   // Create a root reference
   const storage = getStorage();
+  const metadata = {
+    contentType: 'image/jpeg'
+  };
 
   const navigation = useNavigation();
 
@@ -49,9 +52,8 @@ const Page_SignUp = () => {
   const [showAdopter, setShowAdopter] = useState(false);
   const [providers, setProviders] = useState(false);
   const [adopters, setAdopters] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [uploading, setUploading] = useState(false);
-  const [transferred, setTransferred] = useState(0);
+  const [selectedImage, setSelectedImage] = useState('https://i.pinimg.com/736x/07/33/ba/0733ba760b29378474dea0fdbcb97107.jpg');
+  const [profilePic, setProfilePic] = useState('');
 
   const sendData = () => {
     if (showAdopter){
@@ -65,8 +67,6 @@ const Page_SignUp = () => {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        const uid = user.uid;
-        console.log(uid);
         // ...
       })
       .catch((error) => {
@@ -115,7 +115,7 @@ const Page_SignUp = () => {
 
     const adopterData = {
       id: newID,
-      image: 'url_to_image',
+      image: profilePic,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -137,6 +137,7 @@ const Page_SignUp = () => {
       }
 
       console.log('adopter data sent successfully');
+      setProfilePic('');
       setFirstName('');
       setLastName('');
       setEmail('');
@@ -161,7 +162,7 @@ const Page_SignUp = () => {
 
     const providerData = {
       id: newID,
-      image: 'url_to_image',
+      image: profilePic,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -182,6 +183,7 @@ const Page_SignUp = () => {
         throw new Error('Failed to send provider data');
       }
       console.log('Provider data sent successfully');
+      setProfilePic('');
       setFirstName('');
       setLastName('');
       setEmail('');
@@ -236,15 +238,14 @@ const Page_SignUp = () => {
     }
   };
 
-const uploadImage = async () => {
-  const response = await fetch(uri);
+const uploadImage = async (imageUri) => {
+  const response = await fetch(imageUri);
   const blob = await response.blob();
-  const storageRef = ref(storage, "images/");
+  const storageRef = ref(storage, "images/" + new Date().getTime());
 
-  const uploadTask = uploadBytesResumable(storageRef, blob);
+  const uploadTask = uploadBytesResumable(storageRef, blob, metadata);
   uploadTask.on('state_changed',
     (snapshot) => {
-      // Observe state change events such as progress, pause, and resume
       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log('Upload is ' + progress + '% done');
@@ -258,16 +259,33 @@ const uploadImage = async () => {
       }
     },
     (error) => {
-      // Handle unsuccessful uploads
+      // A full list of error codes is available at
+      // https://firebase.google.com/docs/storage/web/handle-errors
+      switch (error.code) {
+        case 'storage/unauthorized':
+          // User doesn't have permission to access the object
+          break;
+        case 'storage/canceled':
+          // User canceled the upload
+          break;
+
+        // ...
+
+        case 'storage/unknown':
+          // Unknown error occurred, inspect error.serverResponse
+          break;
+      }
     },
     () => {
-      // Handle successful uploads on complete
-      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+      // Upload completed successfully, now we can get the download URL
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log('File available at', downloadURL);
+        setProfilePic(downloadURL);
       });
     }
   );
+
+};
 
 }
 
@@ -288,7 +306,12 @@ SelectImage = () => {
             } else {
               let imageUri = response.uri || response.assets?.[0]?.uri;
               setSelectedImage(imageUri);
-              uploadImage(imageUri, "image");
+
+              console.log("Will Upload");
+              if (imageUri != null)
+              {
+                uploadImage(imageUri)
+              }
             }
           });
   };
@@ -414,20 +437,6 @@ SelectImage = () => {
       </View>
     </LinearGradient>
   );
-};
 
-const CustomButton = ({ title, destination }) => {
-  const navigation = useNavigation();
-
-  const handlePress = () => {
-    navigation.navigate(destination);
-  };
-
-  return (
-    <Pressable onPress={handlePress} style={styles.button}>
-      <Text>{title}</Text>
-    </Pressable>
-  );
-};
 
 export default Page_SignUp;
