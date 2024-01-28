@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, Pressable, TextInput } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { initializeApp } from "firebase/app";
+import { useNavigation } from '@react-navigation/native';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import styles from './styles/styles';
 
@@ -16,19 +17,13 @@ const firebaseConfig = {
   measurementId: "G-CW8WYVDBT1"
 };
 
-const CustomButton = ({ title, destination, navigation }) => {
-  const handlePress = () => {
+const Page_LogIn = () => {
+  const navigation = useNavigation();
+
+  const handlePress = (destination) => { 
     navigation.navigate(destination);
   };
 
-  return (
-    <Pressable onPress={handlePress} style={styles.button}>
-      <Text style={styles.button_text}>{title}</Text>
-    </Pressable>
-  );
-};
-
-const Page_LogIn = ({ navigation }) => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null);
   const [emailValue, setEmailValue] = useState('');
@@ -77,14 +72,14 @@ const Page_LogIn = ({ navigation }) => {
         
         <View style={styles.container}>
           <TextInput
-            style={[styles.button, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+            style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
             placeholder="Email address"
             placeholderTextColor="#FAEFF1"
             value={emailValue}
             onChangeText={handleEmailChange}
           />
           <TextInput
-            style={[styles.button, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
+            style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
             placeholder="Password"
             placeholderTextColor="#FAEFF1"
             value={passwordValue}
@@ -93,9 +88,13 @@ const Page_LogIn = ({ navigation }) => {
           <Pressable style={styles.button} onPress={handleLogin}>
             <Text style={styles.button_text}>LOGIN</Text>
           </Pressable>
-          <Text style={styles.text}>Don't have an account? Sign Up Now</Text>
+          <Pressable onPress={() => handlePress("SignUp")}>
+            <Text style={styles.text}>Don't have an account? Sign up now</Text>
+          </Pressable>
           <Text style={[styles.text, { marginTop: 50 }]}>Forgot Password?</Text>
-          <CustomButton title="Cancel" destination="Home" navigation={navigation} />
+          <Pressable style={styles.button} onPress={() => handlePress("Home")}>
+            <Text style={styles.button_text}>Cancel</Text>
+          </Pressable>
         </View>
       </LinearGradient>
     );
