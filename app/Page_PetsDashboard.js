@@ -60,19 +60,28 @@ const PetsDashboard = () => {
             <CustomButton title="go home" destination="Home" />
             <View style={styles.nav_container}>
                 <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
-                    <Text style={styles.bottomButtonText}>Button 1</Text>
-                </Pressable>
-                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
-                    <Text style={styles.bottomButtonText}>Button 2</Text>
+                    <Image
+                    style={styles.nav_img}
+                    source={require('./resources/icons/profile.png')}
+                    />
                 </Pressable>
                 <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
                     <Image
-                    style={styles.icon_img}
+                    style={styles.nav_img}
+                    source={require('./resources/icons/search.png')}
+                    />
+                </Pressable>
+                <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
+                    <Image
+                    style={styles.nav_img}
                     source={require('./resources/icons/spark.png')}
                     />
                 </Pressable>
                 <Pressable style={[styles.nav_button, { backgroundColor: '#DA4167'}]}>
-                    <Text style={styles.navButtonText}>Button 4</Text>
+                    <Image
+                    style={styles.nav_img}
+                    source={require('./resources/icons/settings1.png')}
+                    />
                 </Pressable>
             </View>
         </View>

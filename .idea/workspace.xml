@@ -8,11 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Page_PetsDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_PetsDashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/styles/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/styles/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Page_Home2.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_Home2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/StackNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/StackNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Page_SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/Page_SignUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/StackNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/StackNavigator.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,11 +17,11 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "james"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;git-widget-placeholder&quot;: &quot;james&quot;
   }
-}]]></component>
+}</component>
   <component name="TaskManager">
     <servers />
   </component>

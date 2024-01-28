@@ -197,12 +197,11 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       padding: 0,
       marginHorizontal: 5,
+      alignItems: 'center',
   },
   nav_img: {
-    tintColor: '#FAEFF1',
-    width: 30,
-    height: 30,
-    marginTop: 15
+    width: 35,
+    height: 35,
   },
 
 });
