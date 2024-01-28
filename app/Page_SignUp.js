@@ -12,6 +12,10 @@ const Page_SignUp = () => {
     navigation.navigate(destination);
   };
 
+  useEffect(() => {
+    fetchProviders();
+  }, []);  
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,19 +23,55 @@ const Page_SignUp = () => {
   const [location, setLocation] = useState('');
   const [showProvider, setShowProvider] = useState(true);
   const [showAdopter, setShowAdopter] = useState(false);
+  const [providers, setProviders] = useState(false);
+  const [adopters, setAdopters] = useState(false);
 
   const sendData = () => {
     if (showProvider){
       sendProviderData();
     }
-
     if (showAdopter) {
       sendAdopterData();
     }
-
   }
+
+  const fetchProviders = async () => {
+    try {
+      const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/providers.json');
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await response.json();
+      setProviders(data);
+      console.log('Fetched data:', data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const fetchAdopters = async () => {
+    try {
+      const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/adopters.json');
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await response.json();
+      setAdopters(data);
+      console.log('Fetched data:', data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   const sendAdopterData = async () => {
+    if (adopters !== null) {
+      newID = Object.keys(adopters).length + 1;
+    } else {
+      newID = 0;
+    }    
+
     const adopterData = {
+      id: newID,
       image: 'url_to_image',
       firstName: firstName,
       lastName: lastName,
@@ -39,7 +79,6 @@ const Page_SignUp = () => {
       password: password,
       location: 'New York'
     };
-
 
     try {
       const response = await fetch('https://mchacks24-salianmes-default-rtdb.firebaseio.com/adopters.json', {
@@ -60,13 +99,21 @@ const Page_SignUp = () => {
       setEmail('');
       setPassword('');
       setLocation('');
+      navigation.navigate("PetAdding"); 
     } catch (error) {
       console.error('Error sending adopter data:', error);
     }
   };
 
   const sendProviderData = async () => {
+    if (providers !== null) {
+      newID = Object.keys(providers).length + 1;
+    } else {
+      newID = 0;
+    }    
+
     const providerData = {
+      id: newID,
       image: 'url_to_image',
       firstName: firstName,
       lastName: lastName,
@@ -251,7 +298,7 @@ const Page_SignUp = () => {
 
         </>
         )}
-        <Pressable onPress={sendAdopterData} style={styles.button}>
+        <Pressable onPress={sendData} style={styles.button}>
           <Text>SIGN UP</Text>
         </Pressable>
         <Pressable onPress={() => handlePress("LogIn")}>
