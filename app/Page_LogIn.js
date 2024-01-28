@@ -82,6 +82,7 @@ const Page_LogIn = () => {
             style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
             placeholder="Password"
             placeholderTextColor="#FAEFF1"
+            secureTextEntry={true}
             value={passwordValue}
             onChangeText={handlePasswordChange}
           />

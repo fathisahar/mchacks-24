@@ -351,6 +351,7 @@ SelectImage = () => {
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
           placeholder="Password"
           placeholderTextColor="#FAEFF1"
+          secureTextEntry={true}
           value={password}
           onChangeText={handlePasswordChange}
         />
