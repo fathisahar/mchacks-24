@@ -1,6 +1,6 @@
 
 # salianmes project for mchacks-24
-|
+
 
 <img width="343" alt="image" src="https://github.com/fathisahar/mchacks-24/assets/63174744/2adb6ee3-cf61-444a-bbc7-0157857937cd">
 
