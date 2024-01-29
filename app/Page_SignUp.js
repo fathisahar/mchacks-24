@@ -41,7 +41,7 @@ const Page_SignUp = () => {
     setShowProvider(true);
     fetchProviders();
     fetchAdopters();
-  }, []);  
+  }, []);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -56,6 +56,7 @@ const Page_SignUp = () => {
   const [profilePic, setProfilePic] = useState('');
 
   const sendData = () => {
+    let newID;
     if (showAdopter){
       sendAdopterData();
     }
@@ -105,7 +106,7 @@ const Page_SignUp = () => {
   };
 
   const sendAdopterData = async () => {
-    let newID; 
+    let newID;
 
     if (adopters !== null) {
       newID = Object.keys(adopters).length + 1;
@@ -144,15 +145,14 @@ const Page_SignUp = () => {
       setPassword('');
       setLocation('');
       fetchAdopters();
-      navigation.navigate("PetsMatching"); 
-      
+      navigation.navigate("PetsMatching");
     } catch (error) {
       console.error('Error sending adopter data:', error);
     }
   };
 
   const sendProviderData = async () => {
-    let newID; 
+    let newID;
 
     if (providers !== null) {
       newID = Object.keys(providers).length + 1;
@@ -182,6 +182,7 @@ const Page_SignUp = () => {
       if (!response.ok) {
         throw new Error('Failed to send provider data');
       }
+
       console.log('Provider data sent successfully');
       setProfilePic('');
       setFirstName('');
@@ -189,8 +190,6 @@ const Page_SignUp = () => {
       setEmail('');
       setPassword('');
       setLocation('');
-      navigation.navigate("PetsDashboard", {userID: newID}); 
-      fetchProviders();
     } catch (error) {
       console.error('Error sending provider data:', error);
     }
@@ -287,10 +286,7 @@ const uploadImage = async (imageUri) => {
 
 };
 
-}
-
-
-SelectImage = () => {
+  SelectImage = () => {
       const options = {
             mediaType: 'photo',
             includeBase64: false,
@@ -315,6 +311,7 @@ SelectImage = () => {
             }
           });
   };
+
 
   return (
     <LinearGradient
@@ -437,6 +434,20 @@ SelectImage = () => {
       </View>
     </LinearGradient>
   );
+};
 
+const CustomButton = ({ title, destination }) => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate(destination);
+  };
+
+  return (
+    <Pressable onPress={handlePress} style={styles.button}>
+      <Text>{title}</Text>
+    </Pressable>
+  );
+};
 
 export default Page_SignUp;
