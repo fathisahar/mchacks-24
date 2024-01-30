@@ -120,7 +120,6 @@ const Page_SignUp = () => {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: password,
       location: location
     };
 
@@ -166,7 +165,6 @@ const Page_SignUp = () => {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: password,
       location: location
     };
 
@@ -373,6 +371,7 @@ const uploadImage = async (imageUri) => {
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
           placeholder="Password"
           placeholderTextColor="#FAEFF1"
+          secureTextEntry={true}
           value={password}
           onChangeText={handlePasswordChange}
         />
@@ -412,6 +411,7 @@ const uploadImage = async (imageUri) => {
           style={[styles.input, { backgroundColor: '#FAEFF130', color: "#FAEFF1" }]}
           placeholder="Password"
           placeholderTextColor="#FAEFF1"
+          secureTextEntry={true}
           value={password}
           onChangeText={handlePasswordChange}
         />
